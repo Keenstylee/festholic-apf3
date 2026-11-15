@@ -1,0 +1,17 @@
+Persistencia verificada tras detener y reiniciar Spring Boot.
+El contenido SQL antes y después es idéntico.
+La API vuelve a devolver 4 eventos.
+
+ANTES:
+id	nombre	capacidad	activo	vendidas
+1	Prueba APF3 1794723776415583158	5	\0	5
+15	Ritmos del Pacífico	1200		2
+16	Encuentro bajo las estrellas	800		0
+17	Una noche para recordar	350		0
+
+DESPUÉS:
+id	nombre	capacidad	activo	vendidas
+1	Prueba APF3 1794723776415583158	5	\0	5
+15	Ritmos del Pacífico	1200		2
+16	Encuentro bajo las estrellas	800		0
+17	Una noche para recordar	350		0

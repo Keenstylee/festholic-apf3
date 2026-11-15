@@ -1,0 +1,20 @@
+Chromium automatizado con Playwright, API Spring Boot y MySQL reales.
+OK: Login valida campos vacíos
+OK: Error de credenciales comprensible
+OK: Login ADMIN y navegación por rol
+OK: Formulario de evento valida antes de enviar
+OK: Creación desde Angular persistida y reflejada en listado
+OK: Edición desde Angular
+OK: Borrado confirmado desde Angular
+OK: Filtro consume búsqueda real por fecha
+OK: Registro valida contraseña y campos
+OK: Registro de CLIENTE desde Angular
+OK: CLIENTE ve menú permitido
+OK: Guard impide ruta ADMIN a CLIENTE
+OK: Compra completa Angular → Spring Boot → MySQL
+OK: Mis entradas muestra compra persistida
+OK: JWT restaurado y listado tras recarga
+OK: Sin sesión se redirige al login con retorno
+OK: Vista móvil sin desbordamiento horizontal
+OK: Sin errores JavaScript durante el recorrido
+TOTAL: 18 comprobaciones UI aprobadas.

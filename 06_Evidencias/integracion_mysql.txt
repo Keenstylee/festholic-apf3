@@ -1,0 +1,27 @@
+OK: Registro CLIENTE
+OK: Login CLIENTE
+OK: Login ADMIN
+OK: Mi perfil requiere JWT
+OK: Mi perfil identifica comprador
+OK: Entradas generales restringidas
+OK: Crear evento sin JWT
+OK: Crear evento como CLIENTE
+OK: Validación backend
+OK: Crear evento ADMIN
+OK: Consulta JPQL fecha
+OK: Compra para otro usuario rechazada
+OK: Dos compras simultáneas: una aceptada y otra rechazada
+OK: Capacidad inferior a ventas rechazada
+OK: Comprar último cupo
+OK: Evento agotado cerrado
+OK: No reactivar sin cupos
+OK: Listado propio
+OK: Sin sobreventa real en MySQL
+OK: No se filtra contraseña
+OK: No borrar evento con ventas
+OK: Aislamiento entre compradores
+OK: Editar evento
+OK: Borrar evento sin ventas
+OK: Evento borrado devuelve 404
+
+TOTAL: 25 comprobaciones aprobadas. Evento persistente: 1

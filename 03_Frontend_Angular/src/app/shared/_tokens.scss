@@ -1,0 +1,14 @@
+$bg: #f5f3ed;
+$ink: #20231f;
+$accent: #d9fa57;
+$border: #dadcd2;
+@mixin mobile {
+  @media (max-width: 760px) {
+    @content;
+  }
+}
+@mixin panel {
+  background: #fff;
+  border: 1px solid $border;
+  border-radius: 18px;
+}
