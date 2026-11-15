@@ -1,16 +1,12 @@
-AVANCE DE PROYECTO FINAL 3
+# Avance de Proyecto Final 3
 
-Festholic
-Los encuentros
-empiezan aquí.
+Universidad Tecnológica del Perú UTP · Desarrollo Web Integrado
 
-Frontend Angular integrado con Spring Boot y MySQL
+Festholic | Frontend Angular integrado con Spring Boot
 
-UNIVERSIDAD TECNOLÓGICA DEL PERÚ
-Curso: Desarrollo Web Integrado
 Docente: Kevin Frederick Sachun Becerra
-Integrante: Keenscy Kennedy Sanchez Quispe
-Sección: 29026 · Año: 2026
+
+Integrante: Keenscy Kennedy Sanchez Quispe · Sección 29026 · 2026
 
 ## 1. Portada y resumen del proyecto
 
