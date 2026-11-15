@@ -254,7 +254,7 @@ Imagen: 06_Evidencias/08_mis_entradas.png
 
 | Compilación frontend | npm run build exitoso con plantillas y TypeScript estrictos. angular_build.txt. |
 
-Las capturas 01–12 están completas en 06_Evidencias. La matriz TRAZABILIDAD.md relaciona los requisitos con archivos y evidencias. Los registros de prueba no contienen tokens ni contraseñas. El script de integración utiliza credenciales ADMIN proporcionadas por variables de entorno.
+Las capturas 01–14 están completas en 06_Evidencias. La matriz TRAZABILIDAD.md relaciona los requisitos con archivos y evidencias. Los registros de prueba no contienen tokens ni contraseñas. El script de integración utiliza credenciales ADMIN proporcionadas por variables de entorno.
 
 ## Conclusiones técnicas
 

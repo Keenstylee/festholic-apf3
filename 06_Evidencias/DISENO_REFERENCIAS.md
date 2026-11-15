@@ -30,3 +30,7 @@ Google, recuperación de contraseña, precios, descuentos, noticias, WhatsApp y 
 - Vistas comprobadas a 1440 px y 390 px.
 - Contraste de texto blanco en botón morado: 4.81:1.
 - Capturas 01–12 y PDF regenerados con el nuevo diseño.
+
+## Ajuste del pie de página
+
+Footer con fondo de ancho completo, contenedor alineado con la cartelera, tipografía de 14 px en los enlaces, columnas proporcionadas en escritorio y una columna en móvil. Navegación mediante RouterLink sin recarga de página. Se verificaron cuatro tamaños y el recorrido del enlace Mi cuenta. Ver footer_navegador.txt.

@@ -35,3 +35,7 @@ La web adopta el morado #7C4DFF y rosado #F21E87 del PDF. Se regeneraron las nue
 ## Adaptación de las páginas del negocio
 
 Se adoptó la atmósfera oscura, paneles translúcidos, acceso centrado, banner de evento, tarjetas tipo afiche y selector de entradas en boleto de Live Fest Perú, conservando los colores del PDF. La revisión específica aprobó 21 comprobaciones de navegador (11 del recorrido conectado y 10 de interacciones nuevas), sin errores JavaScript. Se volvieron a generar las capturas y el informe. Ver negocio_navegador.txt y DISENO_REFERENCIAS.md.
+
+## Corrección del footer
+
+Se hizo el fondo de ancho completo y se alineó el contenedor con el contenido principal. Se aumentaron los tamaños de texto y se reemplazó el bloque decorativo grande por una invitación más discreta. En móvil se utiliza una columna. Los enlaces usan RouterLink. Verificado a 1920, 1440, 768 y 390 px, sin desbordamientos; seis comprobaciones aprobadas. Capturas 13_footer_escritorio.png y 14_footer_movil.png.

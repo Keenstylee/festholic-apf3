@@ -1,0 +1,7 @@
+OK: Footer a 1920 px: ancho completo, alineación y texto legible, sin desbordamiento
+OK: Footer a 1440 px: ancho completo, alineación y texto legible, sin desbordamiento
+OK: Footer a 768 px: ancho completo, alineación y texto legible, sin desbordamiento
+OK: Footer a 390 px: ancho completo, alineación y texto legible, sin desbordamiento
+OK: Navegación Angular del footer sin recargar la página
+OK: Sin errores JavaScript
+TOTAL: 6 comprobaciones del footer aprobadas.

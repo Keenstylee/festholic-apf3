@@ -6,10 +6,10 @@
 ✔ Building...
 Initial chunk files | Names           |  Raw size | Estimated transfer size
 chunk-TYFIVTXD.js   | -               | 268.64 kB |                73.24 kB
-styles-SANHALAI.css | styles          |  21.86 kB |                 4.96 kB
-main-IJ4NX5MW.js    | main            |   5.74 kB |                 2.23 kB
+styles-SIYHEKJT.css | styles          |  22.71 kB |                 5.19 kB
+main-2VKWG54W.js    | main            |   6.17 kB |                 2.33 kB
 
-                    | Initial total   | 296.25 kB |                80.43 kB
+                    | Initial total   | 297.52 kB |                80.76 kB
 
 Lazy chunk files    | Names           |  Raw size | Estimated transfer size
 chunk-5LGO7RH2.js   | -               |  41.64 kB |                 8.53 kB
@@ -21,7 +21,7 @@ chunk-KJFQBW4U.js   | admin-page      |   3.72 kB |                 1.51 kB
 chunk-GCRZUCQV.js   | tickets-page    |   3.18 kB |                 1.40 kB
 chunk-C2NSHGMJ.js   | -               | 688 bytes |               688 bytes
 
-Application bundle generation complete. [5.287 seconds] - 2026-11-15T08:19:56.543Z
+Application bundle generation complete. [6.683 seconds] - 2026-11-15T08:30:41.945Z
 
 Output location: /workspace/work/APF3_Festholic/03_Frontend_Angular/dist/festholic
 

@@ -1101,71 +1101,122 @@ td small {
 .empty h2 {
   font-size: 25px;
 }
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+main {
+  flex: 1;
+}
 .site-footer {
+  width: 100%;
+  margin-top: 20px;
+  background: #0c0813;
+  border-top: 1px solid #ad81d52e;
+}
+.footer-shell {
+  width: 100%;
   max-width: 1440px;
-  margin: auto;
-  padding: 45px 5% 25px;
-  border-top: 1px solid t.$border;
+  margin-inline: auto;
+  padding: 46px 5% 24px;
 }
 .footer-main {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr 1fr;
-  gap: 35px;
-  padding-bottom: 35px;
+  grid-template-columns: minmax(0, 1.3fr) minmax(150px, 0.8fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+  padding-bottom: 34px;
 }
-.footer-main p {
-  font-size: 12px;
+.footer-brand .brand {
+  font-size: 32px;
+}
+.footer-brand p {
+  max-width: 370px;
+  margin: 18px 0 0;
+  font-size: 14px;
   line-height: 1.8;
-  margin-top: 15px;
+  color: #c3b6ce;
 }
-.footer-main .footer-kicker {
-  font-size: 8px;
-  letter-spacing: 1.5px;
-  margin-top: 7px;
+.footer-brand .footer-kicker {
+  margin-top: 8px;
+  color: #a98abd;
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  line-height: 1.6;
 }
-.footer-main h3 {
-  font-size: 13px;
-  margin-top: 5px;
-  margin-bottom: 20px;
-}
-.footer-main > div > a:not(.brand) {
-  display: block;
-  font-size: 11px;
-  text-decoration: none;
-  color: t.$muted;
-  margin-bottom: 12px;
-}
-.footer-statement {
+.footer-nav {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: stretch;
+  gap: 9px;
 }
-.footer-statement > span {
-  color: #b498cc;
-  font-size: 13px;
-  letter-spacing: 5px;
-}
-.footer-statement strong {
-  font-size: clamp(25px, 3.5vw, 45px);
-  letter-spacing: -2px;
+.footer-nav h2 {
+  font-size: 15px;
   line-height: 1.4;
+  letter-spacing: 0;
+  margin: 7px 0 12px;
+  color: #f4eafa;
 }
-.footer-statement strong span {
+.footer-nav a {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  width: fit-content;
+  min-width: 130px;
+  padding-block: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  color: #c3b6ce;
+}
+.footer-nav a span {
+  color: #d7a3ef;
+}
+.footer-nav a:hover {
+  color: #fff;
+}
+.footer-invite {
+  border-left: 2px solid #f21e8770;
+  padding: 8px 0 8px 24px;
+}
+.footer-invite .eyebrow {
+  font-size: 10px;
+  color: #f4aad3;
+  margin-bottom: 12px;
+}
+.footer-invite p {
+  font-size: 23px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.6px;
+  color: #f3e9fb;
+  margin-bottom: 15px;
+}
+.footer-invite p span {
   color: t.$pink;
-  margin-left: 10px;
+}
+.footer-invite > a {
+  font-size: 13px;
+  color: #d9b6f2;
+  text-decoration: none;
+}
+.footer-invite > a:hover {
+  text-decoration: underline;
 }
 .footer-bottom {
   display: flex;
   justify-content: space-between;
-  gap: 20px;
-  padding-top: 23px;
-  border-top: 1px solid t.$border;
-  color: #ac98ba;
-  font-size: 10px;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  border-top: 1px solid #ffffff12;
+  padding-top: 22px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #a99ab8;
 }
 .footer-bottom small {
-  font-size: 8px;
-  letter-spacing: 0.8px;
+  font-size: 12px;
+  color: #a99ab8;
 }
 .sr-only {
   position: absolute;
@@ -1418,22 +1469,39 @@ td small {
   .experience-icon {
     font-size: 30px;
   }
+  .footer-shell {
+    padding: 32px 5% 22px;
+  }
   .footer-main {
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding-bottom: 28px;
   }
-  .footer-main > div:first-child {
-    grid-column: 1/-1;
-  }
-  .footer-statement strong {
+  .footer-brand .brand {
     font-size: 29px;
+  }
+  .footer-brand p {
+    font-size: 14px;
+  }
+  .footer-nav {
+    gap: 6px;
+  }
+  .footer-nav h2 {
+    margin: 0 0 8px;
+  }
+  .footer-nav a {
+    min-height: 40px;
+  }
+  .footer-invite {
+    padding-left: 18px;
+  }
+  .footer-invite p {
+    font-size: 22px;
   }
   .footer-bottom {
     flex-direction: column;
-    gap: 10px;
-  }
-  .site-footer {
-    padding-top: 32px;
+    gap: 8px;
+    font-size: 12px;
   }
   h1 {
     letter-spacing: -1.5px;
