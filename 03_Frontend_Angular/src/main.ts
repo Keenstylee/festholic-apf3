@@ -25,7 +25,7 @@ registerLocaleData(es);
   template: `<app-navbar />
     <main><router-outlet /></main>
     <footer>
-      <a class="brand" href="/">festholic<span>✳</span></a>
+      <a class="brand" href="/">festholic<span>✦</span></a>
       <p>Los mejores momentos se viven juntos.</p>
       <small>PROYECTO ACADÉMICO · APF3 · 2026</small>
     </footer>`,

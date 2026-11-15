@@ -15,7 +15,7 @@ import { mensajeError } from "../shared/http";
       </div>
       <a class="primary" routerLink="/admin/eventos/nuevo">+ Nuevo evento</a>
     </div>
-    <a routerLink="/admin/entradas">Ver todas las entradas ↗</a>
+    <a routerLink="/admin/entradas">Ver todas las entradas →</a>
     @if (error()) {
       <p class="alert error" role="alert">{{ error() }}</p>
     }

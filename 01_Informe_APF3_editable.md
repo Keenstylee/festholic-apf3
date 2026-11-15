@@ -94,7 +94,7 @@ Proyecto standalone con Angular 21, TypeScript estricto y carga diferida de pág
 
 
 
-src/app/shared/_tokens.scss define colores y mixins panel/mobile. styles.scss los importa con @use, reutiliza variables y @include, y agrupa las reglas adaptables bajo el mixin móvil. Hay estados de foco, errores, carga y botones deshabilitados. El diseño se adapta a 390 px sin desbordamiento horizontal.
+src/app/shared/_tokens.scss define colores y mixins panel/mobile. styles.scss los importa con @use, reutiliza variables y @include, y agrupa las reglas adaptables bajo el mixin móvil. La paleta comparte con el informe el morado #7C4DFF y el rosado #F21E87, sobre fondos lavanda claros. Hay estados de foco, errores, carga y botones deshabilitados. El diseño se adapta a 390 px sin desbordamiento horizontal.
 
 ## 7. Sistema de rutas
 
@@ -247,6 +247,8 @@ Imagen: 06_Evidencias/08_mis_entradas.png
 | Concurrencia de compra | Con 5 cupos, dos solicitudes de 4: una 201 y una 400. Tras comprar el último cupo, total = 5. |
 
 | Recorrido en Chromium | Registro, login, validación, CRUD, compra, guards, recarga de sesión y vista móvil. navegador.txt. |
+
+| Revisión de la paleta | 11 comprobaciones aprobadas; contraste 4.81:1 en botones principales. paleta_navegador.txt. |
 
 | Persistencia después de reinicio | Comparación de eventos y entradas antes/después; datos conservados. persistencia.txt. |
 

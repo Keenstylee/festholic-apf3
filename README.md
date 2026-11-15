@@ -89,7 +89,7 @@ No se incluyen cuentas ni tokens reales. No hay pasarela de pago: la compra regi
 | /admin/eventos/:id/editar | EventFormPage | ADMIN |
 | /admin/entradas | TicketsPage | ADMIN |
 
-`EventCardComponent` recibe un Evento mediante `input()` y emite `seleccionar` mediante `output()`; EventsPage recibe el evento y navega al detalle. Los formularios son reactivos; la búsqueda usa FormsModule. Los servicios centralizan HTTP; los modelos definen contratos. SASS usa variables, mixins, anidación e interfaz adaptable.
+`EventCardComponent` recibe un Evento mediante `input()` y emite `seleccionar` mediante `output()`; EventsPage recibe el evento y navega al detalle. Los formularios son reactivos; la búsqueda usa FormsModule. Los servicios centralizan HTTP; los modelos definen contratos. SASS usa variables, mixins, anidación e interfaz adaptable. La web comparte el morado `#7C4DFF` y rosado `#F21E87` del informe, con fondos lavanda claros; la paleta se centraliza en `shared/_tokens.scss`.
 
 ## Seguridad y correcciones
 

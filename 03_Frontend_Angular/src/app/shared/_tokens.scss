@@ -1,7 +1,11 @@
-$bg: #f5f3ed;
-$ink: #20231f;
-$accent: #d9fa57;
-$border: #dadcd2;
+// Paleta compartida con el informe APF3: morado y rosado sobre fondos claros.
+$bg: #faf7ff;
+$ink: #191924;
+$primary: #7c4dff;
+$pink: #f21e87;
+$accent: #ffe8f5;
+$border: #e3d9f1;
+$muted: #655c76;
 @mixin mobile {
   @media (max-width: 760px) {
     @content;

@@ -5,7 +5,7 @@ import { AuthService } from "../services/auth.service";
   selector: "app-navbar",
   imports: [RouterLink, RouterLinkActive],
   template: `<header>
-    <a class="brand" routerLink="/eventos">festholic<span>✳</span></a>
+    <a class="brand" routerLink="/eventos">festholic<span>✦</span></a>
     <nav aria-label="Navegación principal">
       <a routerLink="/eventos" routerLinkActive="current">Explorar</a>
       @if (auth.usuario()) {
@@ -17,7 +17,7 @@ import { AuthService } from "../services/auth.service";
         }
         <button class="text-button" (click)="salir()">Salir</button>
       } @else {
-        <a routerLink="/login">Iniciar sesión ↗</a>
+        <a routerLink="/login">Iniciar sesión →</a>
       }
     </nav>
   </header>`,

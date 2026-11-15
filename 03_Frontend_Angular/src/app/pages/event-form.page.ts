@@ -73,7 +73,7 @@ import { mensajeError } from "../shared/http";
           </p>
         }
         <button class="primary" [disabled]="busy() || loading()">
-          {{ busy() ? "Guardando…" : "Guardar evento ↗" }}
+          {{ busy() ? "Guardando…" : "Guardar evento →" }}
         </button>
         <a routerLink="/admin/eventos">Cancelar</a>
       </fieldset>

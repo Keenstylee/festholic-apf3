@@ -6,22 +6,22 @@
 ✔ Building...
 Initial chunk files | Names           |  Raw size | Estimated transfer size
 chunk-TYFIVTXD.js   | -               | 268.64 kB |                73.24 kB
-styles-LQ4BYQPS.css | styles          |   7.90 kB |                 2.10 kB
-main-B5FBNNBP.js    | main            |   4.82 kB |                 1.91 kB
+styles-PQJWMW7U.css | styles          |   8.13 kB |                 2.13 kB
+main-F4RQG5QH.js    | main            |   4.82 kB |                 1.90 kB
 
-                    | Initial total   | 281.36 kB |                77.24 kB
+                    | Initial total   | 281.59 kB |                77.27 kB
 
 Lazy chunk files    | Names           |  Raw size | Estimated transfer size
 chunk-5LGO7RH2.js   | -               |  41.64 kB |                 8.53 kB
-chunk-7KBCRBFT.js   | events-page     |   4.78 kB |                 1.93 kB
-chunk-FPWYBDC5.js   | detail-page     |   4.37 kB |                 1.92 kB
-chunk-FGDRG3OJ.js   | auth-page       |   4.25 kB |                 1.79 kB
-chunk-MUGAKQB4.js   | event-form-page |   4.00 kB |                 1.68 kB
-chunk-7CP23WS3.js   | admin-page      |   3.72 kB |                 1.51 kB
-chunk-MUQ7VS33.js   | tickets-page    |   2.57 kB |                 1.19 kB
+chunk-DITCPCM3.js   | events-page     |   4.78 kB |                 1.93 kB
+chunk-WPRQA3BV.js   | detail-page     |   4.37 kB |                 1.92 kB
+chunk-R2K3FAEH.js   | auth-page       |   4.25 kB |                 1.79 kB
+chunk-QVYX3T2S.js   | event-form-page |   4.00 kB |                 1.68 kB
+chunk-KJFQBW4U.js   | admin-page      |   3.72 kB |                 1.51 kB
+chunk-T43GNDF2.js   | tickets-page    |   2.57 kB |                 1.19 kB
 chunk-C2NSHGMJ.js   | -               | 688 bytes |               688 bytes
 
-Application bundle generation complete. [5.031 seconds] - 2026-11-15T06:29:15.907Z
+Application bundle generation complete. [4.584 seconds] - 2026-11-15T07:55:13.271Z
 
 Output location: /workspace/work/APF3_Festholic/03_Frontend_Angular/dist/festholic
 

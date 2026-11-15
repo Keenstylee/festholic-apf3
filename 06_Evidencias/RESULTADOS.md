@@ -27,3 +27,7 @@ Se bloqueó el formulario de edición durante la carga inicial para impedir que 
 ## Límites
 
 Aplicación local académica; sin pago en línea, recuperación de contraseña o despliegue final. La revisión de concurrencia cubre las solicitudes documentadas, no una prueba de carga de producción. Las capturas del APF2 no se reutilizaron como evidencias del APF3.
+
+## Actualización de identidad visual
+
+La web adopta el morado #7C4DFF y rosado #F21E87 del PDF. Se regeneraron las nueve capturas y el informe. La compilación Angular volvió a aprobarse y se realizaron 11 comprobaciones de navegador sobre validación, colores reales, roles, compra, entradas, móvil y ausencia de errores JavaScript. El botón principal alcanza un contraste de 4.81:1 con texto blanco. Ver paleta_navegador.txt.

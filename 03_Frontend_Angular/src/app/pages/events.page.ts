@@ -15,17 +15,17 @@ import { mensajeError } from "../shared/http";
           Descubre eventos, encuentra a tu gente<br />y guarda tu lugar en el
           próximo encuentro.
         </p>
-        <a class="primary" href="#cartelera">Explorar eventos <span>↘</span></a>
+        <a class="primary" href="#cartelera">Explorar eventos <span>↓</span></a>
       </div>
       <div class="hero-art" aria-hidden="true">
         <div class="rings"></div>
         <span class="art-label">FEEL IT.<br />LIVE IT.</span>
-        <div class="art-bottom">FESTHOLIC EXPERIENCES <b>✳</b></div>
+        <div class="art-bottom">FESTHOLIC EXPERIENCES <b>✦</b></div>
       </div>
     </section>
     <div class="ticker">
-      ENCUENTRA TU RITMO <span>✳</span> VIVE EL MOMENTO <span>✳</span> CREA
-      RECUERDOS <span>✳</span> ENCUENTRA TU RITMO
+      ENCUENTRA TU RITMO <span>✦</span> VIVE EL MOMENTO <span>✦</span> CREA
+      RECUERDOS <span>✦</span> ENCUENTRA TU RITMO
     </div>
     <section id="cartelera">
       <div class="section-heading">

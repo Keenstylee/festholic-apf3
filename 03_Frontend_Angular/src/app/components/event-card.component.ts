@@ -22,7 +22,7 @@ import { Evento } from "../models/models";
       <div class="card-bottom">
         <span>{{ evento().fecha | date: "dd MMM yyyy" }}</span
         ><button class="secondary" (click)="seleccionar.emit(evento())">
-          Ver evento ↗
+          Ver evento →
         </button>
       </div>
     </div>

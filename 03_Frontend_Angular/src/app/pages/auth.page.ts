@@ -10,7 +10,7 @@ import { mensajeError } from "../shared/http";
       <span class="eyebrow">TU PRÓXIMA HISTORIA EMPIEZA AQUÍ</span>
       <h1>Hay noches<br />que se quedan<br /><em>contigo.</em></h1>
       <p>Encuentra tu evento. Reúne a tu gente.<br />Vívelo con Festholic.</p>
-      <div class="story-symbol">✳</div>
+      <div class="story-symbol">✦</div>
     </div>
     <div class="form-panel">
       <span class="eyebrow">FESTHOLIC / MI CUENTA</span>
@@ -72,8 +72,8 @@ import { mensajeError } from "../shared/http";
             busy()
               ? "Procesando…"
               : registro
-                ? "Crear mi cuenta ↗"
-                : "Iniciar sesión ↗"
+                ? "Crear mi cuenta →"
+                : "Iniciar sesión →"
           }}
         </button>
       </form>

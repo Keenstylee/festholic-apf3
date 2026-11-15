@@ -46,7 +46,7 @@ import { mensajeError } from "../shared/http";
         } @empty {
           <div class="empty">
             <h2>Tu próxima historia está por empezar.</h2>
-            <a class="primary" routerLink="/eventos">Explorar eventos ↗</a>
+            <a class="primary" routerLink="/eventos">Explorar eventos →</a>
           </div>
         }
       </div>

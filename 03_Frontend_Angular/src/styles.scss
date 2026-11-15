@@ -39,7 +39,7 @@ button:disabled {
 a:focus-visible,
 button:focus-visible,
 input:focus-visible {
-  outline: 3px solid #657e16;
+  outline: 3px solid t.$primary;
   outline-offset: 4px;
 }
 header {
@@ -61,7 +61,8 @@ nav a {
   text-decoration: none;
 }
 .current {
-  border-bottom: 1px solid;
+  color: #6132c8;
+  border-bottom: 2px solid t.$pink;
 }
 .brand {
   font-size: 32px;
@@ -71,7 +72,7 @@ nav a {
   white-space: nowrap;
 }
 .brand span {
-  color: #667b26;
+  color: t.$pink;
   margin-left: 5px;
 }
 .eyebrow {
@@ -110,7 +111,7 @@ em {
   font-weight: 400;
 }
 p {
-  color: #62675d;
+  color: t.$muted;
 }
 main {
   min-height: 65vh;
@@ -145,12 +146,22 @@ section {
   font-weight: 700;
 }
 .primary {
-  background: t.$ink;
-  color: t.$accent;
+  background: t.$primary;
+  border-color: t.$primary;
+  color: #fff;
+}
+.primary:hover:not(:disabled) {
+  background: #6334db;
+  border-color: #6334db;
+}
+.secondary:hover:not(:disabled) {
+  background: #f0e8ff;
+  border-color: t.$primary;
 }
 .secondary {
   background: transparent;
-  color: t.$ink;
+  color: #6132c8;
+  border-color: #aa88dd;
   padding: 9px 15px;
 }
 .danger {
@@ -170,7 +181,7 @@ section {
   margin-top: 24px;
 }
 .hero-art {
-  background: #b6cdb1;
+  background: #ded0ff;
   position: relative;
   overflow: hidden;
   height: 440px;
@@ -184,15 +195,15 @@ section {
   border-radius: 50%;
   background: repeating-radial-gradient(
     ellipse at center,
-    #324a39 0px,
-    #324a39 3px,
-    #a0b99c 4px,
-    #a0b99c 13px
+    #5830a1 0px,
+    #5830a1 3px,
+    #c5a7ff 4px,
+    #c5a7ff 13px
   );
   transform: rotate(-32deg) scaleX(0.6);
   top: -60px;
   left: 15%;
-  box-shadow: 0 0 60px #445a3b;
+  box-shadow: 0 0 60px #7138b8;
 }
 .art-label {
   position: absolute;
@@ -204,7 +215,7 @@ section {
   font-weight: 900;
   color: t.$accent;
   transform: rotate(-9deg);
-  text-shadow: 2px 3px #314432;
+  text-shadow: 2px 3px #44216f;
 }
 .art-bottom {
   position: absolute;
@@ -213,7 +224,7 @@ section {
   right: 0;
   padding: 20px 25px;
   color: white;
-  background: #243c30b0;
+  background: #321849d9;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -225,7 +236,7 @@ section {
   color: t.$accent;
 }
 .ticker {
-  background: t.$accent;
+  background: #fce5f1;
   padding: 17px 5%;
   font-size: 12px;
   font-weight: 700;
@@ -238,6 +249,7 @@ section {
   border-block: 1px solid t.$ink;
 }
 .ticker span {
+  color: t.$pink;
   font-size: 18px;
 }
 .section-heading {
@@ -275,7 +287,7 @@ section {
 }
 .poster {
   height: 200px;
-  background: #364e3b;
+  background: #673ac4;
   position: relative;
   overflow: hidden;
   padding: 20px;
@@ -307,24 +319,24 @@ section {
   border-radius: 50%;
   background: repeating-radial-gradient(
     circle,
-    #d9fa57 0,
-    #d9fa57 2px,
-    #364e3b 3px,
-    #364e3b 10px
+    #f6c5e2 0,
+    #f6c5e2 2px,
+    #673ac4 3px,
+    #673ac4 10px
   );
   transform: scaleX(0.7) rotate(-30deg);
 }
 .poster.alt {
-  background: #d7bad4;
-  color: #352539;
+  background: #f9cde4;
+  color: #542044;
 }
 .alt .orb {
   background: repeating-radial-gradient(
     circle,
-    #6f4870 0,
-    #6f4870 2px,
-    #d7bad4 3px,
-    #d7bad4 10px
+    #b62676 0,
+    #b62676 2px,
+    #f9cde4 3px,
+    #f9cde4 10px
   );
 }
 .card-body {
@@ -346,7 +358,7 @@ section {
   font-size: 12px;
 }
 .accent {
-  color: #7a912e;
+  color: t.$pink;
 }
 .page {
   min-height: 65vh;
@@ -382,7 +394,7 @@ input {
   width: 100%;
   margin-top: 7px;
   padding: 12px;
-  border: 1px solid #b9bfb0;
+  border: 1px solid #baaccd;
   border-radius: 6px;
   background: #fff;
   color: t.$ink;
@@ -397,8 +409,8 @@ input.ng-invalid.ng-touched {
 }
 .alert {
   padding: 16px 20px;
-  border: 1px solid #b5bc9f;
-  background: #eef0e4;
+  border: 1px solid #c9b7ec;
+  background: #f1eaff;
   border-radius: 8px;
   margin-block: 20px;
 }
@@ -411,9 +423,9 @@ input.ng-invalid.ng-touched {
   color: inherit;
 }
 .success {
-  background: #e9f2da;
-  color: #345b28;
-  border-color: #9eb88c;
+  background: #efe8ff;
+  color: #4e247c;
+  border-color: #c4aceb;
 }
 .muted {
   font-size: 13px;
@@ -451,7 +463,7 @@ input.ng-invalid.ng-touched {
 }
 .story-symbol {
   font-size: 160px;
-  color: #79945c;
+  color: t.$pink;
   line-height: 1;
 }
 .detail-layout {
@@ -465,12 +477,12 @@ input.ng-invalid.ng-touched {
 }
 .detail-graphic {
   height: 220px;
-  background: #cbd9b5;
+  background: #ecdafa;
   font-size: 180px;
   line-height: 220px;
   text-align: center;
   border-radius: 100px 10px 10px 10px;
-  color: #455d36;
+  color: t.$primary;
 }
 .table-wrap {
   overflow-x: auto;
@@ -490,19 +502,20 @@ td {
   font-size: 14px;
 }
 th {
-  background: #eaece1;
+  background: #f0e8ff;
   font-size: 11px;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 td small {
   display: block;
-  color: #62675d;
+  color: t.$muted;
   margin-top: 5px;
 }
 .badge {
+  color: #85204f;
   font-size: 11px;
-  background: #e9efd8;
+  background: #fce5f1;
   padding: 6px 10px;
   border-radius: 20px;
 }
@@ -515,13 +528,13 @@ td small {
 .ticket {
   @include t.panel;
   padding: 30px;
-  border-left: 5px solid #748b47;
+  border-left: 5px solid t.$pink;
 }
 .ticket h2 {
   font-size: 25px;
 }
 .ticket-bottom {
-  border-top: 1px dashed #aab19f;
+  border-top: 1px dashed #c2aed6;
   padding-top: 20px;
   display: flex;
   justify-content: space-between;
@@ -531,7 +544,7 @@ td small {
 .empty {
   padding: 35px;
   grid-column: 1/-1;
-  border: 1px dashed #aeb5a3;
+  border: 1px dashed #c2aed6;
   border-radius: 14px;
 }
 footer {

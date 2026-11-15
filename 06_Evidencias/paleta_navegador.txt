@@ -1,0 +1,12 @@
+OK: Validación visible con la nueva paleta
+OK: Error de login legible
+OK: Administración y formularios con morado y rosado
+OK: Colores de marca coinciden con el PDF: #7c4dff y #f21e87
+OK: Registro y sesión de cliente siguen operativos
+OK: Restricción por rol y menú de cliente conservados
+OK: Compra real y confirmación con nueva paleta
+OK: Entradas propias actualizadas visualmente
+OK: Paleta y diseño adaptados a móvil sin desbordamiento
+OK: Sin errores JavaScript
+OK: Contraste de botón principal y texto blanco: 4.81:1
+TOTAL: 11 comprobaciones aprobadas.

@@ -21,7 +21,7 @@ import { mensajeError } from "../shared/http";
           <p class="detail-meta">
             {{ e.fecha | date: "fullDate" }}<br />{{ e.lugar }}
           </p>
-          <div class="detail-graphic" aria-hidden="true">✳</div>
+          <div class="detail-graphic" aria-hidden="true">✦</div>
         </div>
         <aside class="form-panel">
           <span class="eyebrow">TU LUGAR EN EL ENCUENTRO</span>
@@ -33,7 +33,7 @@ import { mensajeError } from "../shared/http";
               ¡Compra confirmada! Entrada #{{ c.id }} ·
               {{ c.cantidad }} persona(s).
             </div>
-            <a routerLink="/entradas">Ver mis entradas ↗</a>
+            <a routerLink="/entradas">Ver mis entradas →</a>
           } @else if (!e.activo || e.fecha < hoy) {
             <p class="alert">Este evento no está disponible para la venta.</p>
           } @else if (auth.usuario()) {
@@ -57,7 +57,7 @@ import { mensajeError } from "../shared/http";
                 en línea en este avance académico.
               </p>
               <button class="primary full" [disabled]="busy()">
-                {{ busy() ? "Confirmando…" : "Confirmar compra ↗" }}
+                {{ busy() ? "Confirmando…" : "Confirmar compra →" }}
               </button>
             </form>
           } @else {
@@ -66,7 +66,7 @@ import { mensajeError } from "../shared/http";
               class="primary"
               routerLink="/login"
               [queryParams]="{ returnUrl: '/eventos/' + e.id }"
-              >Iniciar sesión ↗</a
+              >Iniciar sesión →</a
             >
           }
         </aside>
