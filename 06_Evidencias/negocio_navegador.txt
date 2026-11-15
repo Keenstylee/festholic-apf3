@@ -1,0 +1,28 @@
+Recorrido completo con la adaptación visual de Live Fest Perú:
+OK: Validación visible con la nueva paleta
+OK: Error de login legible
+OK: Administración y formularios con morado y rosado
+OK: Colores de marca coinciden con el PDF: #7c4dff y #f21e87
+OK: Registro y sesión de cliente siguen operativos
+OK: Restricción por rol y menú de cliente conservados
+OK: Compra real y confirmación con nueva paleta
+OK: Entradas propias actualizadas visualmente
+OK: Paleta y diseño adaptados a móvil sin desbordamiento
+OK: Sin errores JavaScript
+OK: Contraste de botón principal y texto blanco: 4.81:1
+TOTAL: 11 comprobaciones aprobadas.
+
+Nuevas interacciones y revisión móvil:
+OK: Mostrar y ocultar contraseña conserva el valor y funciona
+OK: Pestañas de registro y login navegan a las rutas reales
+OK: Login usable en móvil sin desbordamiento
+OK: Selector de entradas aumenta y disminuye sin bajar de uno
+OK: Selector bloquea cantidades superiores a la capacidad
+OK: Cantidad inválida no envía una compra al backend
+OK: Detalle y boleto de selección adaptados a 390 px
+OK: Detalle de evento muestra banner, ficha y selección en boleto
+OK: Tabla administrativa conserva desplazamiento interno en móvil
+OK: Sin errores JavaScript en las nuevas interacciones
+TOTAL: 10 comprobaciones de diseño e interacción aprobadas.
+
+TOTAL DE ESTA REVISIÓN: 21 comprobaciones aprobadas.

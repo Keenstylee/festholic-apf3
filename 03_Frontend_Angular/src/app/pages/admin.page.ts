@@ -58,8 +58,7 @@ import { mensajeError } from "../shared/http";
             @for (e of eventos(); track e.id) {
               <tr>
                 <td>
-                  <strong>{{ e.nombre }}</strong
-                  ><small>#{{ e.id }}</small>
+                  <strong>{{ e.nombre }}</strong><small>#{{ e.id }}</small>
                 </td>
                 <td>
                   {{ e.fecha | date: "dd MMM yyyy"

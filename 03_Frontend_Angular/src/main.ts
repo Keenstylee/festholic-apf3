@@ -24,10 +24,30 @@ registerLocaleData(es);
   imports: [RouterOutlet, NavbarComponent],
   template: `<app-navbar />
     <main><router-outlet /></main>
-    <footer>
-      <a class="brand" href="/">festholic<span>✦</span></a>
-      <p>Los mejores momentos se viven juntos.</p>
-      <small>PROYECTO ACADÉMICO · APF3 · 2026</small>
+    <footer class="site-footer">
+      <div class="footer-main">
+        <div>
+          <a class="brand" href="/">festholic<span>✦</span></a>
+          <p class="footer-kicker">EVENTOS · EXPERIENCIAS · ENTRADAS</p>
+          <p>
+            Tu próximo encuentro empieza aquí.<br />Descubre, elige y vive el
+            momento.
+          </p>
+        </div>
+        <div>
+          <h3>Explora Festholic</h3>
+          <a href="/eventos">Ver eventos →</a
+          ><a href="/entradas">Mis entradas →</a
+          ><a href="/login">Mi cuenta →</a>
+        </div>
+        <div class="footer-statement">
+          <span>LIVE THE</span><strong>FEELING<span>✦</span></strong>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>Los mejores momentos se viven juntos.</span
+        ><small>PROYECTO ACADÉMICO · APF3 · 2026</small>
+      </div>
     </footer>`,
 })
 class AppComponent {}

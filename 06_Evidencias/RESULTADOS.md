@@ -31,3 +31,7 @@ Aplicación local académica; sin pago en línea, recuperación de contraseña o
 ## Actualización de identidad visual
 
 La web adopta el morado #7C4DFF y rosado #F21E87 del PDF. Se regeneraron las nueve capturas y el informe. La compilación Angular volvió a aprobarse y se realizaron 11 comprobaciones de navegador sobre validación, colores reales, roles, compra, entradas, móvil y ausencia de errores JavaScript. El botón principal alcanza un contraste de 4.81:1 con texto blanco. Ver paleta_navegador.txt.
+
+## Adaptación de las páginas del negocio
+
+Se adoptó la atmósfera oscura, paneles translúcidos, acceso centrado, banner de evento, tarjetas tipo afiche y selector de entradas en boleto de Live Fest Perú, conservando los colores del PDF. La revisión específica aprobó 21 comprobaciones de navegador (11 del recorrido conectado y 10 de interacciones nuevas), sin errores JavaScript. Se volvieron a generar las capturas y el informe. Ver negocio_navegador.txt y DISENO_REFERENCIAS.md.

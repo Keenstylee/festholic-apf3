@@ -89,7 +89,7 @@ No se incluyen cuentas ni tokens reales. No hay pasarela de pago: la compra regi
 | /admin/eventos/:id/editar | EventFormPage | ADMIN |
 | /admin/entradas | TicketsPage | ADMIN |
 
-`EventCardComponent` recibe un Evento mediante `input()` y emite `seleccionar` mediante `output()`; EventsPage recibe el evento y navega al detalle. Los formularios son reactivos; la búsqueda usa FormsModule. Los servicios centralizan HTTP; los modelos definen contratos. SASS usa variables, mixins, anidación e interfaz adaptable. La web comparte el morado `#7C4DFF` y rosado `#F21E87` del informe, con fondos lavanda claros; la paleta se centraliza en `shared/_tokens.scss`.
+`EventCardComponent` recibe un Evento mediante `input()` y emite `seleccionar` mediante `output()`; EventsPage recibe el evento y navega al detalle. Los formularios son reactivos; la búsqueda usa FormsModule. Los servicios centralizan HTTP; los modelos definen contratos. SASS usa variables, mixins, anidación e interfaz adaptable. La web comparte el morado `#7C4DFF` y rosado `#F21E87` del informe, sobre fondos oscuros y paneles translúcidos inspirados en Live Fest Perú; la paleta se centraliza en `shared/_tokens.scss`.
 
 ## Seguridad y correcciones
 
@@ -102,3 +102,11 @@ Nuevos endpoints: GET `/api/auth/me` y GET `/api/entradas/mis`, ambos autenticad
 ## Evidencias y límites
 
 Consultar `06_Evidencias/RESULTADOS.md` y el informe PDF. Las evidencias de este paquete se generan sobre una base local de prueba; las capturas del APF2 no se presentan como pruebas del APF3. El sistema no incluye pagos, recuperación de contraseña ni despliegue en nube porque no son requisitos de estas guías.
+
+## Diseño adaptado de Live Fest Perú
+
+Se utilizaron como referencia visual `entradas.html`, `evento.html` y `login.html` proporcionados por el autor. La portada usa ambiente de concierto, tarjetas tipo afiche y una cabecera de marca; el login es un panel centrado con pestañas y botón Ver/Ocultar contraseña; el detalle incluye un banner y un selector de entradas + / − en formato de boleto. Mis entradas conserva el mismo lenguaje visual. La identidad académica sigue siendo Festholic, con morado #7C4DFF y rosado #F21E87.
+
+Los videos e imágenes de la web original no estaban adjuntos: el ambiente se recreó con SASS. Esta adaptación utiliza el backend actual; no añade Google, recuperación de contraseña, precios ni pagos Yape/Plin. Ver `06_Evidencias/DISENO_REFERENCIAS.md`.
+
+Verificación de esta adaptación: compilación Angular aprobada y 21 comprobaciones de navegador.

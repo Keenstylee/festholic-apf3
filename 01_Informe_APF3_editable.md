@@ -94,7 +94,7 @@ Proyecto standalone con Angular 21, TypeScript estricto y carga diferida de pág
 
 
 
-src/app/shared/_tokens.scss define colores y mixins panel/mobile. styles.scss los importa con @use, reutiliza variables y @include, y agrupa las reglas adaptables bajo el mixin móvil. La paleta comparte con el informe el morado #7C4DFF y el rosado #F21E87, sobre fondos lavanda claros. Hay estados de foco, errores, carga y botones deshabilitados. El diseño se adapta a 390 px sin desbordamiento horizontal.
+src/app/shared/_tokens.scss define colores y mixins panel/mobile. styles.scss los importa con @use, reutiliza variables y @include, y agrupa las reglas adaptables bajo el mixin móvil. La paleta comparte con el informe el morado #7C4DFF y el rosado #F21E87, sobre una atmósfera oscura con paneles translúcidos inspirados en la web Live Fest Perú. Hay estados de foco, errores, carga y botones deshabilitados. El diseño se adapta a 390 px sin desbordamiento horizontal.
 
 ## 7. Sistema de rutas
 
@@ -132,7 +132,7 @@ EventsPage entrega cada Evento al hijo EventCardComponent con [evento]. El hijo 
 
 
 
-AuthPage implementa registro y login con ReactiveFormsModule. EventFormPage reutiliza el formulario para POST y PUT. DetailPage valida la cantidad antes de comprar. Los controles se marcan al intentar enviar; si son inválidos no se llama a la API. La búsqueda por fecha usa FormsModule.
+AuthPage implementa registro y login con ReactiveFormsModule. EventFormPage reutiliza el formulario para POST y PUT. DetailPage valida la cantidad antes de comprar. El detalle incorpora botones + / − vinculados al control de cantidad, y el acceso permite mostrar u ocultar la contraseña. Los controles se marcan al intentar enviar; si son inválidos no se llama a la API. La búsqueda por fecha usa FormsModule.
 
 Al editar, los controles permanecen bloqueados mientras llegan los datos para evitar sobrescribir lo que el usuario acaba de escribir. El guardado y la compra bloquean envíos repetidos durante la solicitud.
 
@@ -248,13 +248,13 @@ Imagen: 06_Evidencias/08_mis_entradas.png
 
 | Recorrido en Chromium | Registro, login, validación, CRUD, compra, guards, recarga de sesión y vista móvil. navegador.txt. |
 
-| Revisión de la paleta | 11 comprobaciones aprobadas; contraste 4.81:1 en botones principales. paleta_navegador.txt. |
+| Adaptación de Live Fest Perú | 21 comprobaciones de navegador: compra, login, selector de cantidad y móvil. negocio_navegador.txt. |
 
 | Persistencia después de reinicio | Comparación de eventos y entradas antes/después; datos conservados. persistencia.txt. |
 
 | Compilación frontend | npm run build exitoso con plantillas y TypeScript estrictos. angular_build.txt. |
 
-Las capturas 01–09 están completas en 06_Evidencias. La matriz TRAZABILIDAD.md relaciona los requisitos con archivos y evidencias. Los registros de prueba no contienen tokens ni contraseñas. El script de integración utiliza credenciales ADMIN proporcionadas por variables de entorno.
+Las capturas 01–12 están completas en 06_Evidencias. La matriz TRAZABILIDAD.md relaciona los requisitos con archivos y evidencias. Los registros de prueba no contienen tokens ni contraseñas. El script de integración utiliza credenciales ADMIN proporcionadas por variables de entorno.
 
 ## Conclusiones técnicas
 
@@ -279,3 +279,19 @@ Figura 8. Cartelera a 390 px de ancho, comprobada sin desbordamiento horizontal.
 Imagen: 06_Evidencias/09_movil.png
 
 Fuentes de requisitos: APF3_01_Estructura_del_entregable.pdf y APF3_02_Guia_explicada_con_ejemplos.pdf. Los ejemplos del centro deportivo se adaptaron a Festholic; no se incorporaron módulos ajenos al proyecto.
+
+## Anexo · diseño inspirado en Live Fest Perú
+
+
+
+Se adaptaron elementos visuales de entradas.html, evento.html y login.html proporcionados por el autor: atmósfera de concierto, superficies oscuras translúcidas, catálogo en tarjetas, banner de evento, selección con formato de boleto y acceso centrado. La paleta sigue el morado #7C4DFF y rosado #F21E87 del informe.
+
+Figura 9. Acceso centrado, panel translúcido, pestañas y control para mostrar la contraseña.
+
+Imagen: 06_Evidencias/10_login_diseno.png
+
+Figura 10. Banner, ficha de evento y selector de cantidad + / − con resumen de entradas.
+
+Imagen: 06_Evidencias/11_detalle_diseno.png
+
+Los fondos se recrearon con SASS porque los videos e imágenes referenciados no estaban adjuntos. La adaptación conserva la API de Festholic y no incorpora pagos, Google ni recuperación de contraseña del sitio de referencia. Consulte DISENO_REFERENCIAS.md y negocio_navegador.txt.

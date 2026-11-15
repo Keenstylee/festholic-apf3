@@ -7,31 +7,38 @@ import { EventCardComponent } from "../components/event-card.component";
 import { mensajeError } from "../shared/http";
 @Component({
   imports: [FormsModule, EventCardComponent],
-  template: `<section class="hero">
-      <div>
-        <span class="eyebrow">MÚSICA. ENCUENTROS. MOMENTOS.</span>
-        <h1>La próxima gran<br />historia se vive<br /><em>en persona.</em></h1>
+  template: `<section class="hero concert-hero">
+      <div class="hero-copy">
+        <span class="pill-label"><i></i>LA MÚSICA NOS ENCUENTRA</span>
+        <h1>Tu próxima<br />gran noche<br /><em>empieza aquí.</em></h1>
         <p>
-          Descubre eventos, encuentra a tu gente<br />y guarda tu lugar en el
-          próximo encuentro.
+          Los eventos que quieres vivir.<br />Tu gente. Tu música. Tu lugar.
         </p>
         <a class="primary" href="#cartelera">Explorar eventos <span>↓</span></a>
+        <div class="hero-footnote">
+          <span>01 / DESCUBRE</span><span>02 / ELIGE</span
+          ><span>03 / VÍVELO</span>
+        </div>
       </div>
-      <div class="hero-art" aria-hidden="true">
-        <div class="rings"></div>
-        <span class="art-label">FEEL IT.<br />LIVE IT.</span>
-        <div class="art-bottom">FESTHOLIC EXPERIENCES <b>✦</b></div>
+      <div class="stage-visual" aria-hidden="true">
+        <div class="stage-beams"></div>
+        <div class="stage-horizon"></div>
+        <div class="stage-word">LIVE<br /><span>THE</span><br />FEELING.</div>
+        <div class="stage-footer">
+          <span>FESTHOLIC EXPERIENCE</span><b>✦</b>
+        </div>
       </div>
     </section>
     <div class="ticker">
-      ENCUENTRA TU RITMO <span>✦</span> VIVE EL MOMENTO <span>✦</span> CREA
-      RECUERDOS <span>✦</span> ENCUENTRA TU RITMO
+      <span>✦</span> ENCUENTRA TU RITMO <span>✦</span> VIVE EL MOMENTO
+      <span>✦</span> CREA RECUERDOS <span>✦</span>
     </div>
     <section id="cartelera">
       <div class="section-heading">
         <div>
-          <span class="eyebrow">TU PRÓXIMO PLAN</span>
-          <h2>En cartelera<span class="accent">.</span></h2>
+          <span class="eyebrow">SELECCIÓN FESTHOLIC</span>
+          <h2>Eventos disponibles<span class="accent">.</span></h2>
+          <p>Encuentra ese próximo «yo estuve ahí».</p>
         </div>
         <form class="filter" (ngSubmit)="cargar()">
           <label
@@ -51,12 +58,13 @@ import { mensajeError } from "../shared/http";
       </div>
       @if (error()) {
         <div class="alert error" role="alert">
-          {{ error() }} <button (click)="cargar()">Reintentar</button>
+          {{ error() }}
+          <button class="secondary" (click)="cargar()">Reintentar</button>
         </div>
       }
       @if (loading()) {
         <p role="status">Buscando tu próximo encuentro…</p>
-      } @else {
+      } @else if (!error()) {
         <div class="event-grid">
           @for (e of eventos(); track e.id) {
             <app-event-card [evento]="e" (seleccionar)="abrir($event)" />
@@ -68,6 +76,16 @@ import { mensajeError } from "../shared/http";
           }
         </div>
       }
+      <div class="experience-strip">
+        <span class="experience-icon">✦</span>
+        <div>
+          <h3>Un encuentro empieza con una entrada.</h3>
+          <p>
+            Descubre la cartelera, guarda tu lugar y consulta tus compras desde
+            tu cuenta.
+          </p>
+        </div>
+      </div>
     </section>`,
 })
 export class EventsPage {

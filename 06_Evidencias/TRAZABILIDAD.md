@@ -32,3 +32,7 @@
 - [x] CRUD de eventos desde Angular.
 
 Los ejemplos de reservas deportivas de la guía se adaptan a eventos y compra de entradas de Festholic. No son requisitos de crear canchas o reservas ajenas al dominio del APF2.
+
+## Continuidad con el diseño del negocio
+
+La interfaz adapta entradas.html, evento.html y login.html de Live Fest Perú, proporcionados por el autor. El detalle, el login y los boletos conservan la API y las reglas del APF3. Consulte DISENO_REFERENCIAS.md; las nuevas interacciones están verificadas en negocio_navegador.txt.

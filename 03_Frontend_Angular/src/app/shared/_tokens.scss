@@ -1,18 +1,19 @@
-// Paleta compartida con el informe APF3: morado y rosado sobre fondos claros.
-$bg: #faf7ff;
-$ink: #191924;
+// Colores del informe sobre la atmósfera oscura de Live Fest Perú.
+$bg: #100b19;
+$ink: #faf7ff;
 $primary: #7c4dff;
 $pink: #f21e87;
-$accent: #ffe8f5;
-$border: #e3d9f1;
-$muted: #655c76;
+$accent: #ffc8e7;
+$border: #ffffff1f;
+$muted: #beb1d0;
 @mixin mobile {
   @media (max-width: 760px) {
     @content;
   }
 }
 @mixin panel {
-  background: #fff;
+  background: linear-gradient(140deg, #281c3cde, #191220f2);
   border: 1px solid $border;
-  border-radius: 18px;
+  border-radius: 22px;
+  box-shadow: 0 18px 50px #00000024;
 }

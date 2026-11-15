@@ -6,22 +6,24 @@ import { mensajeError } from "../shared/http";
 @Component({
   imports: [ReactiveFormsModule, RouterLink],
   template: `<section class="auth-layout">
-    <div class="auth-story">
-      <span class="eyebrow">TU PRÓXIMA HISTORIA EMPIEZA AQUÍ</span>
-      <h1>Hay noches<br />que se quedan<br /><em>contigo.</em></h1>
-      <p>Encuentra tu evento. Reúne a tu gente.<br />Vívelo con Festholic.</p>
-      <div class="story-symbol">✦</div>
+    <div class="auth-ambient" aria-hidden="true">
+      <span>LIVE<br />YOUR<br />MOMENT.</span>
     </div>
-    <div class="form-panel">
-      <span class="eyebrow">FESTHOLIC / MI CUENTA</span>
-      <h2>{{ registro ? "Sé parte del encuentro" : "Qué bueno verte" }}</h2>
+    <div class="form-panel auth-card">
+      <div class="auth-emblem" aria-hidden="true">✦</div>
+      <span class="eyebrow">TU ACCESO A LA EXPERIENCIA</span>
+      <h1>{{ registro ? "Sé parte del encuentro" : "Qué bueno verte" }}</h1>
       <p>
         {{
           registro
-            ? "Crea tu cuenta para comprar entradas."
-            : "Ingresa para vivir tu próximo evento."
+            ? "Crea tu cuenta y encuentra tu próximo plan."
+            : "Inicia sesión para continuar con tu próxima gran noche."
         }}
       </p>
+      <nav class="auth-tabs" aria-label="Acceso a la cuenta">
+        <a routerLink="/login" [class.selected]="!registro">Iniciar sesión</a
+        ><a routerLink="/registro" [class.selected]="registro">Crear cuenta</a>
+      </nav>
       @if (error()) {
         <p class="alert error" role="alert">{{ error() }}</p>
       }
@@ -35,6 +37,7 @@ import { mensajeError } from "../shared/http";
               formControlName="nombre"
               autocomplete="name"
               maxlength="100"
+              placeholder="Tu nombre completo"
           /></label>
           @if (invalido("nombre")) {
             <small class="field-error"
@@ -55,13 +58,24 @@ import { mensajeError } from "../shared/http";
             >Ingresa un correo válido (máximo 120 caracteres).</small
           >
         }
-        <label
-          >Contraseña<input
-            type="password"
+        <label for="auth-password">Contraseña</label>
+        <div class="password-field">
+          <input
+            id="auth-password"
+            [type]="visible() ? 'text' : 'password'"
             formControlName="password"
             [autocomplete]="registro ? 'new-password' : 'current-password'"
             maxlength="72"
-        /></label>
+            placeholder="Tu contraseña"
+          /><button
+            type="button"
+            class="password-toggle"
+            [attr.aria-pressed]="visible()"
+            (click)="visible.set(!visible())"
+          >
+            {{ visible() ? "Ocultar" : "Ver" }}
+          </button>
+        </div>
         @if (invalido("password")) {
           <small class="field-error">{{
             registro ? "Usa entre 8 y 72 caracteres." : "Ingresa tu contraseña."
@@ -77,12 +91,13 @@ import { mensajeError } from "../shared/http";
           }}
         </button>
       </form>
-      <p class="muted">
+      <p class="muted auth-bottom">
         {{ registro ? "¿Ya tienes cuenta?" : "¿Primera vez por aquí?" }}
         <a [routerLink]="registro ? '/login' : '/registro'">{{
           registro ? "Inicia sesión" : "Crea tu cuenta"
         }}</a>
       </p>
+      <a class="back-link" routerLink="/eventos">← Volver a los eventos</a>
     </div>
   </section>`,
 })
@@ -92,6 +107,7 @@ export class AuthPage {
   route = inject(ActivatedRoute);
   fb = inject(FormBuilder);
   registro = this.route.snapshot.routeConfig?.path === "registro";
+  visible = signal(false);
   busy = signal(false);
   error = signal("");
   ok = signal("");

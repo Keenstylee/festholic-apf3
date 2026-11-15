@@ -4,8 +4,14 @@ import { AuthService } from "../services/auth.service";
 @Component({
   selector: "app-navbar",
   imports: [RouterLink, RouterLinkActive],
-  template: `<header>
-    <a class="brand" routerLink="/eventos">festholic<span>✦</span></a>
+  template: `<header class="site-header">
+    <a class="brand-lockup" routerLink="/eventos" aria-label="Festholic, inicio"
+      ><span class="brand-mark" aria-hidden="true">f.</span
+      ><span
+        ><b class="brand">festholic<span>✦</span></b
+        ><small>EVENTOS · EXPERIENCIAS · ENTRADAS</small></span
+      ></a
+    >
     <nav aria-label="Navegación principal">
       <a routerLink="/eventos" routerLinkActive="current">Explorar</a>
       @if (auth.usuario()) {
@@ -17,7 +23,7 @@ import { AuthService } from "../services/auth.service";
         }
         <button class="text-button" (click)="salir()">Salir</button>
       } @else {
-        <a routerLink="/login">Iniciar sesión →</a>
+        <a class="nav-login" routerLink="/login">Iniciar sesión →</a>
       }
     </nav>
   </header>`,
