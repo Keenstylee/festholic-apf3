@@ -16,7 +16,7 @@ En este avance continúo mi sistema de eventos Festholic del APF2. Incorporé un
 
 Mantuve Spring Boot 3.4.5, JPA/Hibernate, MySQL y JWT del avance anterior. Corregí la sobreventa concurrente y la edición inconsistente del aforo. Incluyo los resultados de validación de esta versión: 42 pruebas backend, 25 comprobaciones HTTP/MySQL y los recorridos de navegador documentados en las evidencias.
 
-Delimité este avance a una aplicación local integrada, sin pasarela de pago ni despliegue final. Incluyo capturas con datos de prueba del APF3. Mantengo la modalidad individual autorizada que indiqué en el informe del APF2.
+Delimité este avance a una aplicación local integrada, sin pasarela de pago ni despliegue final. Incluyo capturas con datos de prueba del APF3.
 
 ## 2. Correcciones del APF2
 
@@ -123,11 +123,17 @@ Bloqueé los controles de edición durante la carga inicial para evitar que una 
 
 Figura 1. Formulario de evento con validación visual antes de llamar al backend.
 
-Imagen: 06_Evidencias/03_evento_validacion.png
+Imagen: 06_Evidencias/pruebas_manuales/11_validacion_evento.png
 
 Figura 2. Respuesta comprensible ante credenciales incorrectas.
 
-Imagen: 06_Evidencias/02_login_error.png
+Imagen: 06_Evidencias/pruebas_manuales/13_login_credenciales_incorrectas.png
+
+
+
+Evidencia manual. El correo sin @ se rechaza en el formulario antes de comprobar las credenciales.
+
+Imagen: 06_Evidencias/pruebas_manuales/12_validacion_correo.png
 
 ## 11. Servicios Angular para consumir la API REST
 
@@ -157,33 +163,59 @@ Adapté el menú y las rutas a los roles ADMIN y CLIENTE. Conservé en Spring Se
 
 Elegí sessionStorage para limitar la persistencia a la pestaña. Reconozco que el token sigue siendo accesible a JavaScript. Para una futura versión de producción tendría que evaluar cookies, renovación de sesión y otras medidas; no incluyo esas funciones en el alcance actual.
 
-## 13. Demostración funcional integrada · administración
+
+
+Evidencia manual de autorización. Con sesión CLIENTE activa en la misma pestaña, el acceso a /admin/eventos redirige a /eventos. La captura muestra el destino; el recorrido fue confirmado durante la prueba.
+
+Imagen: 06_Evidencias/pruebas_manuales/17_cliente_redirigido_catalogo.png
+
+## 13. Demostración funcional integrada
+
+### 13.1 Administración
 
 
 
-Para demostrar el CRUD, ingreso como ADMIN y accedo a Administrar. Registro un evento futuro desde Angular, compruebo su aparición en la cartelera y edito el lugar. Luego elimino un evento temporal sin ventas. Finalmente, compruebo que un evento con entradas quede protegido por la restricción de integridad referencial.
+Para demostrar el CRUD, ingreso como ADMIN y accedo a Administrar. Registro el evento de prueba Omar Courtz desde Angular, compruebo su aparición en la cartelera y edito su capacidad de 100 a 20 personas. Luego elimino un evento temporal sin ventas. Las pruebas de integridad referencial del backend se conservan en los registros técnicos de la entrega; no forman parte de esta secuencia manual.
 
 Figura 3. Administración con datos obtenidos de la API, edición y borrado disponibles para ADMIN.
 
-Imagen: 06_Evidencias/04_admin_crud.png
+Imagen: 06_Evidencias/pruebas_manuales/05_administracion_eventos.png
 
 Figura 4. Catálogo Angular con eventos persistidos en MySQL.
 
-Imagen: 06_Evidencias/05_catalogo.png
-
-## 13. Demostración funcional integrada · compra
+Imagen: 06_Evidencias/pruebas_manuales/01_catalogo_sesion_iniciada.png
 
 
 
-Para demostrar la compra, registro una cuenta CLIENTE, inicio sesión y selecciono un evento del catálogo Festholic. Elijo dos entradas y confirmo la operación. Angular envía el POST con JWT; Spring Boot comprueba identidad, fecha y disponibilidad, bloquea el evento y guarda la compra. Consulto el resultado en Mis entradas.
+Evidencia manual. Alta de Omar Courtz (#7) con capacidad de 100 personas.
+
+Imagen: 06_Evidencias/pruebas_manuales/06_evento_creado.png
+
+
+
+Evidencia manual. El mismo evento cambia su capacidad a 20 personas.
+
+Imagen: 06_Evidencias/pruebas_manuales/07_evento_editado.png
+
+
+
+Evidencia manual. El backend confirma la eliminación y el evento desaparece del listado.
+
+Imagen: 06_Evidencias/pruebas_manuales/09_evento_eliminado.png
+
+### 13.2 Compra y consulta de entradas
+
+
+
+Para demostrar la compra, registro una cuenta CLIENTE, inicio sesión y selecciono un evento del catálogo Festholic. Elijo una entrada y confirmo la operación; la respuesta identifica la entrada #7 para JUNGLE - World Tour 2027. Angular envía el POST con JWT; Spring Boot comprueba identidad, fecha y disponibilidad, bloquea el evento y guarda la compra. Consulto el resultado en Mis entradas.
 
 Figura 5. Confirmación de una compra real desde Angular contra Spring Boot y MySQL.
 
-Imagen: 06_Evidencias/07_compra_confirmada.png
+Imagen: 06_Evidencias/pruebas_manuales/03_compra_confirmada.png
 
 Figura 6. La compra aparece en el listado propio y permanece después de recargar la página.
 
-Imagen: 06_Evidencias/08_mis_entradas.png
+Imagen: 06_Evidencias/pruebas_manuales/04_mis_entradas.png
 
 ## 14. Evidencias y conclusiones
 
@@ -202,6 +234,10 @@ Imagen: 06_Evidencias/08_mis_entradas.png
 
 Organizo las capturas 01–14 en 06_Evidencias y relaciono los requisitos con sus archivos en TRAZABILIDAD.md. Conservo los resultados de ejecución sin tokens ni contraseñas. El script de integración recibe las credenciales ADMIN mediante variables de entorno.
 
+### Pruebas manuales de la instalación local
+
+El 16 de noviembre de 2026 comprobé registro e inicio de sesión, compra de una entrada, consulta de Mis entradas después de recargar, alta/edición/borrado de un evento, mensajes de validación, rechazo de credenciales incorrectas y redirección por rol CLIENTE. Las 17 capturas originales se conservan en 06_Evidencias/pruebas_manuales. La permanencia tras recargar no equivale a una nueva prueba de reinicio del servidor. Los resultados automatizados de las tablas anteriores corresponden a los registros técnicos ya incluidos en la entrega y no a una nueva ejecución durante este recorrido.
+
 ## Conclusiones técnicas
 
 
@@ -218,7 +254,7 @@ Documenté la ejecución en README.md: configurar MySQL y las variables DB_USER,
 
 Figura 7. Sesión CLIENTE: navegación de exploración y entradas; la ruta administrativa se rechaza mediante guard.
 
-Imagen: 06_Evidencias/06_cliente_roles.png
+Imagen: 06_Evidencias/pruebas_manuales/15_catalogo_cliente.png
 
 Figura 8. Cartelera a 390 px de ancho, comprobada sin desbordamiento horizontal.
 
@@ -241,3 +277,7 @@ Figura 10. Detalle de un evento del módulo Festholic y selector de cantidad + /
 Imagen: 06_Evidencias/11_detalle_diseno.png
 
 Mantuve la presentación en SASS y cargué la fuente localmente. Los afiches provienen de la API o del campo de imagen del evento. El catálogo y las compras académicas de Festholic utilizan el backend Spring Boot y mi base MySQL. Detallo estas decisiones en DISENO_REFERENCIAS.md.
+
+## Anexo · configuración comprobada en Windows
+
+Antes de ejecutar Maven, definí DB_USER, DB_PASS y JWT_SECRET en la misma ventana de PowerShell. La ausencia de DB_USER causaba que MySQL recibiera el literal ${DB_USER}; al configurar las variables, el backend inició correctamente. El archivo .env de Docker Compose no carga automáticamente las variables de PowerShell. README.md incluye los comandos de ejecución.
