@@ -1,11 +1,11 @@
-Pruebas ejecutadas en Java 17 y Maven 3.9.11.
-[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.335 s -- in pe.festholic.eventos.security.JwtServiceTest
-[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.44 s -- in pe.festholic.eventos.security.SeguridadHttpTest
-[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.406 s -- in pe.festholic.eventos.controller.EventoControllerTest
-[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.062 s -- in pe.festholic.eventos.controller.EntradaControllerTest
-[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.481 s -- in pe.festholic.eventos.service.EventoServiceImplTest
-[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.028 s -- in pe.festholic.eventos.service.EntradaServiceImplTest
-[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.273 s -- in pe.festholic.eventos.service.AuthServiceImplTest
+Ejecución del backend con Java 17 y Maven 3.9.11.
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.752 s -- in pe.festholic.eventos.security.JwtServiceTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.716 s -- in pe.festholic.eventos.security.SeguridadHttpTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.190 s -- in pe.festholic.eventos.controller.EventoControllerTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.688 s -- in pe.festholic.eventos.controller.EntradaControllerTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.267 s -- in pe.festholic.eventos.service.EventoServiceImplTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.059 s -- in pe.festholic.eventos.service.EntradaServiceImplTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.192 s -- in pe.festholic.eventos.service.AuthServiceImplTest
 [INFO] Tests run: 42, Failures: 0, Errors: 0, Skipped: 0
 [INFO] BUILD SUCCESS
-[INFO] Total time:  24.827 s
+[INFO] Total time:  16.409 s

@@ -1,0 +1,33 @@
+OK: Catálogo conectado a la API
+OK: Tipografía Inter local sin cápsulas ni rótulos decorativos
+OK: Tres afiches reales cargados en el archivo de eventos finalizados
+OK: Evento histórico conserva su fecha y no permite compra
+OK: Login valida campos vacíos antes de enviar
+OK: Error de credenciales comprensible
+OK: Mostrar y ocultar contraseña
+OK: Login ADMIN y navegación por rol
+OK: Formulario de evento mantiene validación visual
+OK: Formulario rechaza URL de imagen no válida
+OK: Alta de evento con afiche desde Angular
+OK: Edición conserva y actualiza el campo de imagen
+OK: Borrado de evento temporal sin ventas
+OK: Filtro de próximos distingue el archivo histórico
+OK: Filtro por fecha consume la consulta real
+OK: Registro valida antes de enviar
+OK: Registro de cliente conectado al backend
+OK: Login CLIENTE
+OK: Guard y menú restringen administración al cliente
+OK: Evento sin imagen muestra una alternativa sin imagen rota
+OK: Selector + / − conserva el límite mínimo
+OK: Selector respeta la capacidad máxima
+OK: Cantidad inválida no envía una compra
+OK: Detalle y selector adaptados a móvil
+OK: Compra real desde el nuevo diseño
+OK: Compra y sesión permanecen tras recargar
+OK: Catálogo y footer sin desbordamiento a 1920 px
+OK: Catálogo y footer sin desbordamiento a 1440 px
+OK: Catálogo y footer sin desbordamiento a 768 px
+OK: Catálogo y footer sin desbordamiento a 390 px
+OK: Sin errores JavaScript en el recorrido
+OK: Contraste del botón principal: 4.6:1
+TOTAL: 32 comprobaciones de diseño y funciones aprobadas.

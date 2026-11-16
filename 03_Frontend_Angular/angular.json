@@ -1,6 +1,8 @@
 {
   "version": 1,
-  "cli": { "analytics": false },
+  "cli": {
+    "analytics": false
+  },
   "projects": {
     "festholic": {
       "projectType": "application",
@@ -14,7 +16,13 @@
             "tsConfig": "tsconfig.json",
             "index": "src/index.html",
             "styles": ["src/styles.scss"],
-            "outputPath": "dist/festholic"
+            "outputPath": "dist/festholic",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
+            ]
           },
           "configurations": {
             "production": {
@@ -28,14 +36,19 @@
                 }
               ]
             },
-            "development": { "optimization": false, "sourceMap": true }
+            "development": {
+              "optimization": false,
+              "sourceMap": true
+            }
           },
           "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {
-            "development": { "buildTarget": "festholic:build:development" }
+            "development": {
+              "buildTarget": "festholic:build:development"
+            }
           },
           "defaultConfiguration": "development"
         }

@@ -1,4 +1,6 @@
-# Trazabilidad de las guías APF3
+# Trazabilidad de los requisitos APF3
+
+Relaciono cada sección de las guías con su implementación y evidencia en mi proyecto.
 
 | Sección obligatoria | Implementación / evidencia |
 |---|---|
@@ -6,7 +8,7 @@
 | 2. Correcciones APF2 | Bloqueo de evento, aforo consistente, autorización en servicio; 42 pruebas y 25 comprobaciones de integración. |
 | 3. Arquitectura | Angular → HTTP/JWT → Spring Boot → JPA → MySQL; informe y README. |
 | 4. Estructura Angular | angular.json, package-lock.json, main.ts, proxy.conf.json; components/pages/services/models/guards/shared. |
-| 5. Componentes | Navbar, EventCard; Auth, Events, Detail, Admin, EventForm, Tickets. |
+| 5. Componentes | Navbar, EventCard, EventPoster; Auth, Events, Detail, Admin, EventForm, Tickets. |
 | 6. SASS | src/styles.scss y src/app/shared/_tokens.scss: variables, mixins panel/mobile, @use y adaptación móvil. |
 | 7. Rutas | src/app/app.routes.ts; authGuard y adminGuard. |
 | 8. Comunicación | EventCard recibe Evento con input() y emite seleccionar con output(); EventsPage abre el detalle. |
@@ -31,8 +33,9 @@
 - [x] Restricciones ADMIN/CLIENTE en interfaz, rutas y backend.
 - [x] CRUD de eventos desde Angular.
 
-Los ejemplos de reservas deportivas de la guía se adaptan a eventos y compra de entradas de Festholic. No son requisitos de crear canchas o reservas ajenas al dominio del APF2.
+Apliqué los requisitos de las guías al dominio de eventos y compra de entradas de mi proyecto Festholic.
 
-## Continuidad con el diseño del negocio
 
-La interfaz adapta entradas.html, evento.html y login.html de Live Fest Perú, proporcionados por el autor. El detalle, el login y los boletos conservan la API y las reglas del APF3. Consulte DISENO_REFERENCIAS.md; las nuevas interacciones están verificadas en negocio_navegador.txt.
+## Datos iniciales
+
+Preparé tres eventos de ejemplo en el script SQL para mi base MySQL. Angular consulta estos registros mediante Spring Boot. Mantengo el alcance del APF3: componentes, SASS, rutas, formularios, validación, servicios HTTP, JWT, roles y CRUD integrado.

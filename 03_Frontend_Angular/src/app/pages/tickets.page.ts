@@ -7,16 +7,12 @@ import { mensajeError } from "../shared/http";
 @Component({
   imports: [DatePipe, RouterLink],
   template: `<section class="page">
-    <span class="eyebrow">TU COLECCIÓN DE MOMENTOS</span>
-    <h1>
-      {{ todas ? "Todas las entradas" : "Tus próximos encuentros"
-      }}<span class="accent">.</span>
-    </h1>
+    <h1>{{ todas ? "Todas las entradas" : "Mis entradas" }}</h1>
     <p>
       {{
         todas
-          ? "Registro general de compras."
-          : "Tus compras confirmadas, listas para el próximo encuentro."
+          ? "Consulta el registro de compras."
+          : "Consulta los eventos y las entradas de tu cuenta."
       }}
     </p>
     @if (error()) {
@@ -30,40 +26,36 @@ import { mensajeError } from "../shared/http";
     } @else if (!error()) {
       <div class="ticket-grid">
         @for (e of entradas(); track e.id) {
-          <article class="ticket admission-ticket">
+          <article class="admission-ticket">
             <div class="ticket-content">
-              <span class="event-status"><i></i>{{ e.estado }}</span>
+              <p class="ticket-state">
+                {{ e.estado === "ACTIVA" ? "Entrada activa" : e.estado }}
+              </p>
               <h2>{{ e.evento.nombre }}</h2>
               <p>
-                ◷ {{ e.evento.fecha | date: "fullDate" }}<br />◇
-                {{ e.evento.lugar }}
+                {{ e.evento.fecha | date: "fullDate" }}<br />{{
+                  e.evento.lugar
+                }}
               </p>
-              <div class="ticket-bottom">
-                <span
-                  >Compra: {{ e.fechaCompra | date: "dd/MM/yyyy HH:mm" }}</span
-                >
-              </div>
+              <p class="ticket-purchase-date">
+                Comprada el {{ e.fechaCompra | date: "dd/MM/yyyy HH:mm" }}
+              </p>
               @if (todas) {
-                <p class="ticket-owner">
-                  {{ e.usuario.nombre }} · {{ e.usuario.email }}
-                </p>
+                <p>{{ e.usuario.nombre }} · {{ e.usuario.email }}</p>
               }
             </div>
             <div class="admission-stub">
-              <span class="eyebrow">FESTHOLIC</span
-              ><strong>{{ e.cantidad }}</strong
-              ><span>{{ e.cantidad === 1 ? "PERSONA" : "PERSONAS" }}</span>
-              <div class="barcode" aria-hidden="true"></div>
-              <small>ENTRADA #{{ e.id }}</small
-              ><span class="sr-only">{{ e.cantidad }} persona(s)</span>
+              <strong>{{ e.cantidad }}</strong><span>{{
+                e.cantidad === 1 ? "persona" : "personas"
+              }}</span
+              ><small>Entrada #{{ e.id }}</small>
             </div>
           </article>
         } @empty {
           <div class="empty">
-            <span class="empty-symbol" aria-hidden="true">✦</span>
-            <h2>Tu próxima historia está por empezar.</h2>
-            <p>Descubre la cartelera y encuentra tu próximo plan.</p>
-            <a class="primary" routerLink="/eventos">Explorar eventos →</a>
+            <h2>Todavía no tienes entradas.</h2>
+            <p>Consulta los eventos y elige tu próximo plan.</p>
+            <a class="primary" routerLink="/eventos">Ver eventos</a>
           </div>
         }
       </div>

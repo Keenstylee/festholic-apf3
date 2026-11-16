@@ -48,6 +48,7 @@ public class EventoServiceImpl implements EventoService {
         }
         existente.setNombre(nuevosDatos.getNombre());
         existente.setLugar(nuevosDatos.getLugar());
+        existente.setImagenUrl(nuevosDatos.getImagenUrl());
         existente.setFecha(nuevosDatos.getFecha());
         existente.setCapacidad(nuevosDatos.getCapacidad());
         existente.setActivo(nuevosDatos.isActivo() && nuevosDatos.getCapacidad() > vendidas);

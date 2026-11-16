@@ -1,112 +1,106 @@
 # Festholic · Avance de Proyecto Final 3
 
-Continuidad del APF2: Angular + SASS → API REST Spring Boot/JWT → JPA → MySQL.
+En este avance continúo mi proyecto del APF2 e integro Angular con SASS, mi API Spring Boot con JWT y la persistencia JPA/MySQL.
+
 Autor: Keenscy Kennedy Sanchez Quispe · UTP · sección 29026.
+
+## Arquitectura
+
+Angular → API REST Spring Boot → JPA/Hibernate → MySQL.
+
+El catálogo, el CRUD y las compras utilizan mi backend y mi base de datos. Utilicé una API externa únicamente para obtener los datos de tres eventos de ejemplo; no forma parte de la ejecución de la aplicación.
 
 ## Requisitos
 
-- Java 17 o 21, Maven 3.9+.
-- Node.js 22.12+ o 24 y npm (Angular 21).
-- MySQL 8, local o Docker Compose. Puertos: MySQL 3306, API 8080, Angular 4200.
+- Java 17 o 21 y Maven 3.9+.
+- Node.js 22.12+ o 24 y npm.
+- MySQL 8. Puertos: MySQL 3306, backend 8080 y Angular 4200.
 
 ## 1. Base de datos
 
-Con MySQL existente, ejecutar `04_Base_de_Datos/01_crear_bd.sql`.
-Alternativa: copiar `.env.example` como `.env`, cambiar claves y ejecutar en esta carpeta:
+Con MySQL local, ejecutar `04_Base_de_Datos/01_crear_bd.sql`. Si ya existe la base `festholic` del APF2, se puede reutilizar.
 
-```sh
-docker compose up -d
-```
+También incluyo `compose.yaml` como alternativa: copiar `.env.example` a `.env`, configurar las claves y ejecutar `docker compose up -d`. El `.env` de Compose no configura automáticamente la terminal de Maven.
 
-El `.env` de Compose no exporta variables a Maven: configurarlas también en la terminal del backend.
-Hibernate crea las tablas al iniciar. No se requiere importar datos anteriores.
+## 2. Backend en PowerShell
 
-## 2. Backend (terminal 1)
-
-PowerShell en Windows:
+En una terminal, dentro de `02_Backend_SpringBoot`:
 
 ```powershell
-$env:DB_USER="festholic"
-$env:DB_PASS="la_clave_configurada"
-$env:JWT_SECRET="un_secreto_aleatorio_privado_de_al_menos_32_bytes"
-cd 02_Backend_SpringBoot
+$env:DB_USER="root"
+$env:DB_PASS="TU_CONTRASEÑA_DE_MYSQL"
+$env:JWT_SECRET="un_secreto_local_privado_de_al_menos_32_bytes"
 mvn test
 mvn spring-boot:run
 ```
 
-Bash:
+Reemplazar el usuario y la contraseña por los de la instancia local. Hibernate crea o actualiza las tablas, incluida la columna opcional `imagen_url`. Los registros del APF2 se conservan.
 
-```sh
-export DB_USER=festholic
-export DB_PASS='la_clave_configurada'
-export JWT_SECRET='un_secreto_aleatorio_privado_de_al_menos_32_bytes'
-cd 02_Backend_SpringBoot
-mvn test
-mvn spring-boot:run
-```
+## 3. Datos iniciales de ejemplo
 
-La API usa `localhost:3306/festholic`. En MySQL propio, utilizar el usuario y contraseña reales de tu instancia. Para cambiar la URL sin editar código se puede exportar `SPRING_DATASOURCE_URL`.
+Después de iniciar una vez el backend actualizado, abrir y ejecutar en MySQL Workbench:
 
-## 3. Angular (terminal 2)
+`04_Base_de_Datos/04_datos_iniciales.sql`
 
-```sh
-cd 03_Frontend_Angular
+El script incorpora JUNGLE, SIMPLE PLAN y SLIPKNOT con sus nombres, lugares, fechas y afiches de referencia. La capacidad de 100 entradas se configura exclusivamente para la demostración académica; no representa un aforo oficial. El script no elimina datos y evita repetir un mismo evento con la misma fecha.
+
+Los datos se guardan en MySQL y se consultan mediante `GET /api/eventos`. No es necesario conectarse a la API externa para abrir la web. Los afiches se obtienen desde los enlaces guardados en cada evento y conservan sus colores originales.
+
+## 4. Angular
+
+En una segunda terminal, dentro de `03_Frontend_Angular`:
+
+```powershell
 npm ci
 npm start
 ```
 
-Abrir http://localhost:4200. El proxy reenvía `/api` al puerto 8080: no hay acceso directo a MySQL ni necesidad de habilitar CORS. Para cambiar el destino, editar `proxy.conf.json` y reiniciar Angular.
+Abrir http://localhost:4200 y dejar las dos terminales abiertas. El proxy envía `/api` a localhost:8080; Angular no accede directamente a MySQL.
 
-```sh
+Para compilar:
+
+```powershell
 npm run build
 ```
 
-La compilación queda en `dist/festholic/browser`. Para servir esa compilación, el servidor debe reenviar las rutas de Angular a `index.html` y `/api` al backend. La publicación no es requisito del APF3.
+La salida queda en `dist/festholic/browser`. Un servidor para esa compilación debe reenviar `/api` al backend y las rutas de Angular a `index.html`. La publicación no es un requisito principal del APF3.
 
-## 4. Primer uso y demostración
+## 5. Demostración funcional
 
-1. Crear una cuenta desde `/registro`. Siempre recibe rol CLIENTE.
-2. Para el administrador, ejecutar `04_Base_de_Datos/03_habilitar_admin.sql` sustituyendo el correo. Volver a iniciar sesión.
-3. ADMIN: ir a Administrar, crear un evento futuro, editarlo y comprobarlo en Explorar.
-4. Registrar otra cuenta CLIENTE; entrar, abrir el evento, comprar y consultar Mis entradas.
-5. Intentar eliminar un evento con entradas: la interfaz muestra el conflicto de integridad.
-6. Crear y eliminar un evento sin compras para demostrar el DELETE exitoso.
-7. Probar validación vacía, credenciales incorrectas, restricción de `/admin/eventos` para CLIENTE y filtro de fecha.
-8. Reiniciar el backend y comprobar que eventos y entradas permanecen en MySQL.
+1. Crear una cuenta desde `/registro`; recibe el rol CLIENTE.
+2. Para habilitar al responsable, ejecutar `04_Base_de_Datos/03_habilitar_admin.sql` sustituyendo el correo y volver a iniciar sesión.
+3. Como ADMIN, crear, consultar, editar y eliminar un evento sin ventas desde Angular.
+4. Como CLIENTE, abrir un evento, seleccionar la cantidad, confirmar la compra y consultar Mis entradas.
+5. Comprobar la validación de formularios, los errores de permisos y el conflicto al borrar un evento con compras.
+6. Reiniciar el backend y consultar nuevamente los datos para comprobar su persistencia.
 
-No se incluyen cuentas ni tokens reales. No hay pasarela de pago: la compra registra una entrada académica.
+La compra registra una entrada académica; no realiza un cobro en línea.
 
-## Rutas y responsabilidades
+## Rutas
 
-| Ruta | Componente | Acceso |
+| Ruta | Vista | Acceso |
 |---|---|---|
-| /eventos | EventsPage + EventCardComponent | Público |
-| /eventos/:id | DetailPage | Público; compra autenticada |
-| /registro, /login | AuthPage | Público |
-| /entradas | TicketsPage | Sesión |
-| /admin/eventos | AdminPage | ADMIN |
-| /admin/eventos/nuevo | EventFormPage | ADMIN |
-| /admin/eventos/:id/editar | EventFormPage | ADMIN |
-| /admin/entradas | TicketsPage | ADMIN |
+| /eventos | Catálogo y filtros | Público |
+| /eventos/:id | Detalle y compra | Público; compra con sesión |
+| /login, /registro | Cuenta | Público |
+| /entradas | Entradas propias | Sesión |
+| /admin/eventos | Administración | ADMIN |
+| /admin/eventos/nuevo | Alta | ADMIN |
+| /admin/eventos/:id/editar | Edición | ADMIN |
+| /admin/entradas | Registro general | ADMIN |
 
-`EventCardComponent` recibe un Evento mediante `input()` y emite `seleccionar` mediante `output()`; EventsPage recibe el evento y navega al detalle. Los formularios son reactivos; la búsqueda usa FormsModule. Los servicios centralizan HTTP; los modelos definen contratos. SASS usa variables, mixins, anidación e interfaz adaptable. La web comparte el morado `#7C4DFF` y rosado `#F21E87` del informe, sobre fondos oscuros y paneles translúcidos inspirados en Live Fest Perú; la paleta se centraliza en `shared/_tokens.scss`.
+## Organización y decisiones técnicas
 
-## Seguridad y correcciones
+Utilicé páginas, componentes, servicios, modelos y guards con responsabilidades separadas. EventCardComponent recibe el evento mediante input y comunica la selección mediante output; EventPosterComponent presenta su afiche o una alternativa si la imagen falta o falla.
 
-JWT en `sessionStorage`, limitado a la pestaña. Se revisa vencimiento antes de enviarlo; al recargar se consulta `/api/auth/me`. El interceptor solo adjunta Bearer a la API propia. Un 401 protegido elimina la sesión. El backend verifica firma, vencimiento y rol actual en MySQL. Guards e interfaz reflejan el rol, pero la autorización efectiva corresponde a Spring Security.
+Centralicé negro, morado y rosado en `_tokens.scss` y utilicé mixins SASS para reutilizar reglas y adaptar la interfaz. Incorporé Inter localmente con su licencia. Los afiches mantienen su aspecto original: no aplico filtros ni capas de color sobre ellos.
 
-Compras y cambios de aforo bloquean la misma fila de evento con PESSIMISTIC_WRITE, en transacción READ_COMMITTED. Esto evita leer un recuento antiguo después de esperar por el bloqueo. No se permite capacidad inferior a ventas; un evento sin cupos no se reactiva. La compra también verifica identidad con `@PreAuthorize` en el servicio.
+Añadí `imagenUrl` como atributo opcional del evento y lo persistí en MySQL. El formulario permite un enlace http/https o una ruta local `/eventos/archivo.jpg`, con máximo 1000 caracteres y validación en ambos extremos.
 
-Nuevos endpoints: GET `/api/auth/me` y GET `/api/entradas/mis`, ambos autenticados. Se mantienen los endpoints del APF2. La colección actualizada está en `05_Pruebas_API`.
+Almaceno el JWT en sessionStorage y restauro la identidad con `/api/auth/me`. El interceptor adjunta Bearer a mi API; los guards reflejan los roles y Spring Security aplica la autorización definitiva. La compra verifica la identidad también en el servicio.
 
-## Evidencias y límites
+Incorporé bloqueo PESSIMISTIC_WRITE y transacciones READ_COMMITTED en compras y cambios de aforo. No permito capacidad inferior a lo vendido ni reactivar un evento sin cupos.
 
-Consultar `06_Evidencias/RESULTADOS.md` y el informe PDF. Las evidencias de este paquete se generan sobre una base local de prueba; las capturas del APF2 no se presentan como pruebas del APF3. El sistema no incluye pagos, recuperación de contraseña ni despliegue en nube porque no son requisitos de estas guías.
+## Entregables y verificación
 
-## Diseño adaptado de Live Fest Perú
-
-Se utilizaron como referencia visual `entradas.html`, `evento.html` y `login.html` proporcionados por el autor. La portada usa ambiente de concierto, tarjetas tipo afiche y una cabecera de marca; el login es un panel centrado con pestañas y botón Ver/Ocultar contraseña; el detalle incluye un banner y un selector de entradas + / − en formato de boleto. Mis entradas conserva el mismo lenguaje visual. La identidad académica sigue siendo Festholic, con morado #7C4DFF y rosado #F21E87.
-
-Los videos e imágenes de la web original no estaban adjuntos: el ambiente se recreó con SASS. Esta adaptación utiliza el backend actual; no añade Google, recuperación de contraseña, precios ni pagos Yape/Plin. Ver `06_Evidencias/DISENO_REFERENCIAS.md`.
-
-Verificación de esta adaptación: compilación Angular aprobada y 21 comprobaciones de navegador.
+Incluyo informe PDF y versión editable, backend, frontend, scripts SQL, colección Postman y evidencias. Los resultados se encuentran en `06_Evidencias/RESULTADOS.md`.

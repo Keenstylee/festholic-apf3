@@ -6,18 +6,13 @@ import { mensajeError } from "../shared/http";
 @Component({
   imports: [ReactiveFormsModule, RouterLink],
   template: `<section class="auth-layout">
-    <div class="auth-ambient" aria-hidden="true">
-      <span>LIVE<br />YOUR<br />MOMENT.</span>
-    </div>
-    <div class="form-panel auth-card">
-      <div class="auth-emblem" aria-hidden="true">✦</div>
-      <span class="eyebrow">TU ACCESO A LA EXPERIENCIA</span>
-      <h1>{{ registro ? "Sé parte del encuentro" : "Qué bueno verte" }}</h1>
+    <div class="auth-card">
+      <h1>{{ registro ? "Crear cuenta" : "Iniciar sesión" }}</h1>
       <p>
         {{
           registro
-            ? "Crea tu cuenta y encuentra tu próximo plan."
-            : "Inicia sesión para continuar con tu próxima gran noche."
+            ? "Regístrate para comprar y consultar tus entradas."
+            : "Accede a tu cuenta de Festholic."
         }}
       </p>
       <nav class="auth-tabs" aria-label="Acceso a la cuenta">
@@ -66,7 +61,6 @@ import { mensajeError } from "../shared/http";
             formControlName="password"
             [autocomplete]="registro ? 'new-password' : 'current-password'"
             maxlength="72"
-            placeholder="Tu contraseña"
           /><button
             type="button"
             class="password-toggle"
@@ -86,18 +80,18 @@ import { mensajeError } from "../shared/http";
             busy()
               ? "Procesando…"
               : registro
-                ? "Crear mi cuenta →"
-                : "Iniciar sesión →"
+                ? "Crear mi cuenta"
+                : "Iniciar sesión"
           }}
         </button>
       </form>
-      <p class="muted auth-bottom">
-        {{ registro ? "¿Ya tienes cuenta?" : "¿Primera vez por aquí?" }}
+      <p class="auth-bottom">
+        {{ registro ? "¿Ya tienes cuenta?" : "¿Todavía no tienes cuenta?" }}
         <a [routerLink]="registro ? '/login' : '/registro'">{{
-          registro ? "Inicia sesión" : "Crea tu cuenta"
+          registro ? "Inicia sesión" : "Regístrate"
         }}</a>
       </p>
-      <a class="back-link" routerLink="/eventos">← Volver a los eventos</a>
+      <a class="back-link" routerLink="/eventos">Volver a los eventos</a>
     </div>
   </section>`,
 })

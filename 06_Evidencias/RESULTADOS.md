@@ -1,41 +1,40 @@
-# Resultados de verificación APF3
+# Resultados de verificación de mi APF3
 
-Ejecución local el 15 de noviembre de 2026, zona America/Lima.
+Reúno las evidencias de la integración Angular → Spring Boot → MySQL de Festholic. La revisión actual corresponde al 16 de noviembre de 2026; conservo también las comprobaciones de persistencia e integración registradas el 15 de noviembre.
 
-- Backend: Java 17, Maven 3.9.11, Spring Boot 3.4.5. **42 pruebas, 0 fallos, 0 errores, 0 omitidas**.
-- Angular 21: `npm run build` aprobado con TypeScript y plantillas estrictos.
-- API y MySQL 8.4 reales: **25 comprobaciones aprobadas**.
-- Chromium / Playwright: **18 comprobaciones UI aprobadas**, sin errores JavaScript.
-- Persistencia: resultados SQL idénticos tras detener y reiniciar Spring Boot; API devuelve los cuatro eventos existentes.
+| Verificación | Resultado | Archivo |
+|---|---|---|
+| Backend Spring Boot | 42 pruebas, 0 fallos y 0 errores | backend_pruebas.txt |
+| Integración base con MySQL | 25 comprobaciones aprobadas | integracion_mysql.txt |
+| Persistencia y validación de imágenes | 10 comprobaciones HTTP aprobadas | imagenes_api.txt |
+| Interfaz Angular | 32 comprobaciones de funciones y diseño | interfaz_actual.txt |
+| Compilación Angular | Compilación aprobada | angular_build.txt |
+| Persistencia tras reinicio | Datos SQL conservados | persistencia.txt |
 
-## Qué se comprobó con MySQL
+Los recorridos son independientes y no representan una prueba de carga de producción.
 
-Registro y login; perfil protegido; roles HTTP 401/403; consultas por fecha; validación; identidad del comprador; dos compras simultáneas; último cupo; aforo menor a ventas; intento de reactivación agotada; listado propio; aislamiento de otro cliente; contraseña no serializada; integridad referencial 409; edición y borrado reales; 404 tras borrado.
+## Datos y afiches
 
-En concurrencia, dos POST de cuatro entradas compitieron por cinco cupos: uno respondió 201 y otro 400. La venta final, tras comprar el cupo restante, fue exactamente cinco. Esta comprobación usa transacciones y consultas reales, además de la suite con mocks.
+Preparé tres eventos de ejemplo en `04_datos_iniciales.sql`, con fechas, lugares y afiches obtenidos como datos de referencia. El aforo se configura para la demostración académica. El catálogo de la web consulta mi backend Spring Boot y los eventos se conservan en MySQL.
 
-## Capturas
+Las imágenes mantienen sus colores originales. La identidad de la interfaz utiliza negro, morado y rosado; incorporé la fuente Inter localmente y una presentación adaptable a escritorio y móvil.
 
-01 login con validación; 02 error de credenciales; 03 formulario de evento inválido; 04 administración CRUD; 05 catálogo real; 06 menú CLIENTE y ruta ADMIN rechazada; 07 compra confirmada; 08 entradas propias; 09 vista móvil de 390 px.
+## Funciones comprobadas
 
-Las capturas usan cuentas de prueba y no contienen tokens. El informe incluye una selección; los PNG completos permiten ampliación. La base de pruebas no se entrega como volcado: el proyecto inicia en una base nueva siguiendo el README.
+Incluyo registro, login, JWT, restricciones ADMIN/CLIENTE, CRUD de eventos, validación de imágenes, filtro de fecha, selector de cantidad, compra propia y consulta de entradas. También comprobé formularios inválidos, errores de permisos, persistencia al recargar e integridad referencial al borrar un evento comprado.
 
-## Corrección encontrada durante la verificación
+En la prueba de concurrencia registrada, dos compras de cuatro entradas compitieron por cinco cupos: una respondió 201 y otra 400. Tras comprar el cupo restante, el total vendido fue cinco. Apliqué bloqueo del evento y aislamiento READ_COMMITTED para respaldar esa regla.
 
-Se bloqueó el formulario de edición durante la carga inicial para impedir que una respuesta tardía sobrescribiera los campos ya escritos. El recorrido se repitió con esa corrección y aprobó sus 18 comprobaciones.
+## Evidencias
 
-## Límites
+- 01–03: validaciones y errores de formularios.
+- 04–06: administración, catálogo y restricciones por rol.
+- 07–08: compra confirmada y entradas propias.
+- 09–12: acceso, detalle y presentación móvil.
+- 13–14: footer en escritorio y móvil.
 
-Aplicación local académica; sin pago en línea, recuperación de contraseña o despliegue final. La revisión de concurrencia cubre las solicitudes documentadas, no una prueba de carga de producción. Las capturas del APF2 no se reutilizaron como evidencias del APF3.
+Los PNG completos permiten ampliación. Utilicé cuentas de prueba y omití tokens completos y contraseñas de las evidencias. Documenté la ejecución en README.md y los casos de API en la colección Postman.
 
-## Actualización de identidad visual
+## Alcance
 
-La web adopta el morado #7C4DFF y rosado #F21E87 del PDF. Se regeneraron las nueve capturas y el informe. La compilación Angular volvió a aprobarse y se realizaron 11 comprobaciones de navegador sobre validación, colores reales, roles, compra, entradas, móvil y ausencia de errores JavaScript. El botón principal alcanza un contraste de 4.81:1 con texto blanco. Ver paleta_navegador.txt.
-
-## Adaptación de las páginas del negocio
-
-Se adoptó la atmósfera oscura, paneles translúcidos, acceso centrado, banner de evento, tarjetas tipo afiche y selector de entradas en boleto de Live Fest Perú, conservando los colores del PDF. La revisión específica aprobó 21 comprobaciones de navegador (11 del recorrido conectado y 10 de interacciones nuevas), sin errores JavaScript. Se volvieron a generar las capturas y el informe. Ver negocio_navegador.txt y DISENO_REFERENCIAS.md.
-
-## Corrección del footer
-
-Se hizo el fondo de ancho completo y se alineó el contenedor con el contenido principal. Se aumentaron los tamaños de texto y se reemplazó el bloque decorativo grande por una invitación más discreta. En móvil se utiliza una columna. Los enlaces usan RouterLink. Verificado a 1920, 1440, 768 y 390 px, sin desbordamientos; seis comprobaciones aprobadas. Capturas 13_footer_escritorio.png y 14_footer_movil.png.
+Mi entrega corresponde a una aplicación académica local. No implementé cobros en línea, recuperación de contraseña ni despliegue final. La fuente externa de datos no se consulta al abrir la aplicación: el catálogo funciona desde la base MySQL del proyecto.

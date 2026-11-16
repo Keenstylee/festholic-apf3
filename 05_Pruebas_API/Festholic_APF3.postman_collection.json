@@ -27,6 +27,10 @@
     {
       "key": "fechaEvento",
       "value": "2027-06-20"
+    },
+    {
+      "key": "imagenEvento",
+      "value": ""
     }
   ],
   "item": [
@@ -158,7 +162,7 @@
         "url": "{{baseUrl}}/api/eventos",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"nombre\": \"Evento APF3\",\n  \"lugar\": \"Lima\",\n  \"fecha\": \"{{fechaEvento}}\",\n  \"capacidad\": 10,\n  \"activo\": true\n}"
+          "raw": "{\n  \"nombre\": \"Evento APF3\",\n  \"lugar\": \"Lima\",\n  \"fecha\": \"{{fechaEvento}}\",\n  \"capacidad\": 10,\n  \"activo\": true,\n  \"imagenUrl\": \"{{imagenEvento}}\"\n}"
         }
       },
       "event": [
@@ -229,7 +233,7 @@
         "url": "{{baseUrl}}/api/eventos/{{eventoId}}",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"nombre\": \"Evento editado APF3\",\n  \"lugar\": \"Lima\",\n  \"fecha\": \"{{fechaEvento}}\",\n  \"capacidad\": 10,\n  \"activo\": true\n}"
+          "raw": "{\n  \"nombre\": \"Evento editado APF3\",\n  \"lugar\": \"Lima\",\n  \"fecha\": \"{{fechaEvento}}\",\n  \"capacidad\": 10,\n  \"activo\": true,\n  \"imagenUrl\": \"{{imagenEvento}}\"\n}"
         }
       },
       "event": [
@@ -261,7 +265,7 @@
         "url": "{{baseUrl}}/api/eventos",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"nombre\": \"Evento APF3\",\n  \"lugar\": \"Lima\",\n  \"fecha\": \"{{fechaEvento}}\",\n  \"capacidad\": 10,\n  \"activo\": true\n}"
+          "raw": "{\n  \"nombre\": \"Evento APF3\",\n  \"lugar\": \"Lima\",\n  \"fecha\": \"{{fechaEvento}}\",\n  \"capacidad\": 10,\n  \"activo\": true,\n  \"imagenUrl\": \"{{imagenEvento}}\"\n}"
         }
       },
       "event": [
@@ -425,7 +429,7 @@
         "url": "{{baseUrl}}/api/eventos/{{eventoId}}",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"nombre\": \"Evento APF3\",\n  \"lugar\": \"Lima\",\n  \"fecha\": \"{{fechaEvento}}\",\n  \"capacidad\": 1,\n  \"activo\": true\n}"
+          "raw": "{\n  \"nombre\": \"Evento APF3\",\n  \"lugar\": \"Lima\",\n  \"fecha\": \"{{fechaEvento}}\",\n  \"capacidad\": 1,\n  \"activo\": true,\n  \"imagenUrl\": \"{{imagenEvento}}\"\n}"
         }
       },
       "event": [
@@ -481,7 +485,7 @@
         "url": "{{baseUrl}}/api/eventos",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"nombre\": \"Evento APF3\",\n  \"lugar\": \"Lima\",\n  \"fecha\": \"{{fechaEvento}}\",\n  \"capacidad\": 10,\n  \"activo\": true\n}"
+          "raw": "{\n  \"nombre\": \"Evento APF3\",\n  \"lugar\": \"Lima\",\n  \"fecha\": \"{{fechaEvento}}\",\n  \"capacidad\": 10,\n  \"activo\": true,\n  \"imagenUrl\": \"{{imagenEvento}}\"\n}"
         }
       },
       "event": [

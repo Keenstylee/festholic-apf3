@@ -12,31 +12,24 @@ Integrante: Keenscy Kennedy Sanchez Quispe · Sección 29026 · 2026
 
 
 
-El APF3 continúa el sistema de eventos del APF2. Añade un frontend Angular 21 con SASS, navegación por rutas, formularios validados y servicios HTTP conectados a la API real. Los clientes se registran, inician sesión, consultan eventos y compran entradas propias; el administrador gestiona la cartelera mediante CRUD y consulta las compras.
+En este avance continúo mi sistema de eventos Festholic del APF2. Incorporé un frontend Angular 21 con SASS, rutas, formularios validados y servicios HTTP conectados a la API. Organicé el acceso para que los clientes consulten eventos y compren entradas propias, mientras el administrador gestiona sus eventos mediante CRUD y consulta las compras. Preparé tres eventos de ejemplo en un script SQL, con fechas, lugares y afiches obtenidos de una API externa. El catálogo de Festholic consulta siempre los eventos guardados en mi base MySQL.
 
-La entrega conserva Spring Boot 3.4.5, JPA/Hibernate, MySQL y JWT. Corrige la sobreventa concurrente y la edición inconsistente del aforo. La validación de esta versión obtuvo 42 pruebas backend y 25 comprobaciones HTTP/MySQL aprobadas, además del recorrido automatizado por navegador documentado en las evidencias.
+Mantuve Spring Boot 3.4.5, JPA/Hibernate, MySQL y JWT del avance anterior. Corregí la sobreventa concurrente y la edición inconsistente del aforo. Incluyo los resultados de validación de esta versión: 42 pruebas backend, 25 comprobaciones HTTP/MySQL y los recorridos de navegador documentados en las evidencias.
 
-Alcance: aplicación local integrada; sin pasarela de pago ni despliegue final. Las capturas corresponden a datos de prueba del APF3. La modalidad individual se consigna como continuidad de lo indicado en el informe del APF2.
+Delimité este avance a una aplicación local integrada, sin pasarela de pago ni despliegue final. Incluyo capturas con datos de prueba del APF3. Mantengo la modalidad individual autorizada que indiqué en el informe del APF2.
 
 ## 2. Correcciones del APF2
 
 
 
 | Observación | Mejora aplicada | Evidencia |
-
 | --- | --- | --- |
-
-| Sobreventa simultánea | Bloqueo PESSIMISTIC_WRITE sobre el evento; compra transaccional con READ_COMMITTED. | integracion_mysql.txt: una compra 201 y otra 400. |
-
-| Edición incoherente de aforo | Se rechaza capacidad menor a lo vendido; no se abre venta si no quedan cupos. Mismo bloqueo al editar. | 3 pruebas unitarias nuevas y validación HTTP real. |
-
-| Autorización solo en controlador | @PreAuthorize en comprar y listarPropias. Se mantiene el control HTTP. | EntradaServiceImpl y pruebas de identidad. |
-
-| Falta de comprobación con base real | Script Python contra API en ejecución y MySQL 8.4; verifica consultas, concurrencia y restricciones. | 25 comprobaciones aprobadas. |
-
-| Uso dependiente de Postman | Angular realiza registro, login, CRUD y compra con formularios y servicios. | Capturas 01–09 y navegador.txt. |
-
-| Informe con capturas pequeñas y sin paginación | Documento con páginas numeradas, matriz de trazabilidad y capturas completas externas. | Este informe y 06_Evidencias. |
+| Sobreventa simultánea | Incorporé PESSIMISTIC_WRITE sobre el evento y READ_COMMITTED en la compra. | integracion_mysql.txt: una compra 201 y otra 400. |
+| Edición incoherente de aforo | Impedí reducir la capacidad por debajo de las ventas y reactivar un evento sin cupos. Apliqué el bloqueo al editar. | 3 pruebas unitarias nuevas y validación HTTP real. |
+| Autorización solo en controlador | Añadí @PreAuthorize en comprar y listarPropias, manteniendo el control HTTP. | EntradaServiceImpl y pruebas de identidad. |
+| Falta de comprobación con base real | Incorporé un script Python para comprobar consultas, concurrencia y restricciones contra la API y MySQL. | 25 comprobaciones aprobadas. |
+| Uso dependiente de Postman | Integré registro, login, CRUD y compra mediante formularios y servicios Angular. | Capturas 01–09 y navegador.txt. |
+| Informe con capturas pequeñas y sin paginación | Añadí páginas numeradas, una matriz de trazabilidad y capturas completas. | Este informe y 06_Evidencias. |
 
 ## 3. Arquitectura general actualizada
 
@@ -44,30 +37,23 @@ Alcance: aplicación local integrada; sin pasarela de pago ni despliegue final. 
 
 Usuario → Angular (rutas, componentes, formularios) → HTTP/JSON + JWT → Spring Security → Controller → Service → Repository JPA → MySQL.
 
-Angular presenta los datos y valida el formulario; el interceptor adjunta el token. Spring Security valida la identidad y el rol, los servicios aplican las reglas del aforo y las transacciones, y JPA persiste las entidades. Angular nunca accede directamente a MySQL.
+Distribuí las responsabilidades por capas: Angular presenta los datos y valida formularios; el interceptor adjunta el token; Spring Security controla la identidad y los permisos; los servicios aplican las reglas de aforo y las transacciones; y JPA persiste los datos en MySQL. No establecí acceso directo desde Angular a la base de datos. Utilicé una API externa únicamente como fuente de algunos datos iniciales; la aplicación mantiene el flujo Angular → Spring Boot → MySQL.
 
-En desarrollo, el navegador usa localhost:4200. El proxy de Angular reenvía /api a localhost:8080; Spring Boot se conecta a localhost:3306/festholic. Así las solicitudes del navegador mantienen el mismo origen sin habilitar CORS indiscriminado.
+Configuré Angular en localhost:4200, el proxy /api hacia Spring Boot en localhost:8080 y MySQL en localhost:3306/festholic. Con este esquema mantengo las solicitudes del navegador bajo el mismo origen durante el desarrollo.
 
 ## 4. Creación y estructura del proyecto Angular
 
 
 
-Proyecto standalone con Angular 21, TypeScript estricto y carga diferida de páginas. package.json y package-lock.json fijan las dependencias; angular.json configura compilación y servidor. main.ts registra HttpClient, router, idioma español e inicialización de sesión. proxy.conf.json establece el destino de la API.
+Organicé el frontend como una aplicación standalone de Angular 21, con TypeScript estricto y carga diferida de páginas. Definí las dependencias en package.json y package-lock.json, la compilación en angular.json y la inicialización del router, HttpClient, idioma y sesión en main.ts. Configuré el destino de la API en proxy.conf.json.
 
 | Carpeta | Responsabilidad |
-
 | --- | --- |
-
 | components/ | NavbarComponent y EventCardComponent reutilizables. |
-
 | pages/ | Vistas asociadas a rutas: autenticación, catálogo, detalle, formulario, administración y entradas. |
-
 | services/ | AuthService centraliza sesión; ApiService centraliza eventos y entradas. |
-
 | models/ | Contratos TypeScript: Usuario, AuthResponse, Evento y Entrada. |
-
 | guards/ | Autenticación y acceso ADMIN. |
-
 | shared/ | Interceptor JWT, traducción de errores y tokens SASS. |
 
 ## 5. Componentes
@@ -75,87 +61,64 @@ Proyecto standalone con Angular 21, TypeScript estricto y carga diferida de pág
 
 
 | Componente | Responsabilidad |
-
 | --- | --- |
-
 | NavbarComponent | Menú por rol y cierre de sesión. |
-
-| EventCardComponent | Tarjeta de evento; emite selección al padre. |
-
+| EventCardComponent / EventPosterComponent | Tarjeta, afiche, alternativa ante imagen ausente y selección al padre. |
 | AuthPage | Formularios de registro y login. |
-
 | EventsPage / DetailPage | Catálogo, filtro por fecha, detalle y compra. |
-
 | AdminPage / EventFormPage | Listar, confirmar borrado, crear y editar eventos. |
-
 | TicketsPage | Entradas propias o listado general para ADMIN. |
 
 ## 6. Estilos con SASS
 
 
 
-src/app/shared/_tokens.scss define colores y mixins panel/mobile. styles.scss los importa con @use, reutiliza variables y @include, y agrupa las reglas adaptables bajo el mixin móvil. La paleta comparte con el informe el morado #7C4DFF y el rosado #F21E87, sobre una atmósfera oscura con paneles translúcidos inspirados en la web Live Fest Perú. Hay estados de foco, errores, carga y botones deshabilitados. El diseño se adapta a 390 px sin desbordamiento horizontal.
+Centralicé el negro, morado #7C4DFF y rosado #F21E87 en src/app/shared/_tokens.scss. Utilicé @use, variables y mixins para organizar SASS y la adaptación móvil. Incorporé la fuente Inter localmente y prioricé títulos claros, afiches y controles legibles, sin rótulos decorativos. Conservé los colores originales de los afiches y mantuve estados de foco, error y carga.
 
 ## 7. Sistema de rutas
 
 
 
 | Ruta | Vista | Acceso |
-
 | --- | --- | --- |
-
 | /eventos | EventsPage | Público |
-
 | /eventos/:id | DetailPage | Público; compra con sesión |
-
 | /login, /registro | AuthPage | Público |
-
 | /entradas | TicketsPage | Autenticado |
-
 | /admin/eventos | AdminPage | ADMIN |
-
 | /admin/eventos/nuevo | EventFormPage | ADMIN |
-
 | /admin/eventos/:id/editar | EventFormPage | ADMIN |
-
 | /admin/entradas | TicketsPage | ADMIN |
 
-authGuard conserva la ruta de retorno al enviar al usuario al login. adminGuard devuelve al catálogo a un CLIENTE. La API verifica los permisos en cada solicitud, incluso si se intenta omitir el guard desde el navegador.
+Implementé authGuard para conservar la ruta de retorno cuando es necesario iniciar sesión y adminGuard para impedir el acceso de CLIENTE a la administración. Mantuve la comprobación de permisos en cada solicitud del backend, ya que los guards del navegador no reemplazan la autorización de la API.
 
 ## 8. Comunicación entre componentes
 
 
 
-EventsPage entrega cada Evento al hijo EventCardComponent con [evento]. El hijo declara input.required&lt;Evento&gt;() y output&lt;Evento&gt;(). Al pulsar “Ver evento”, emite seleccionar.emit(evento()); el padre recibe (seleccionar)="abrir($event)" y navega al detalle correspondiente. Este intercambio se usa en la compra real.
+Implementé la comunicación entre EventsPage y EventCardComponent mediante input.required&lt;Evento&gt;() y output&lt;Evento&gt;(). El listado entrega cada evento al hijo con [evento]. Al seleccionar una tarjeta, el hijo emite seleccionar.emit(evento()); el padre recibe (seleccionar)="abrir($event)" y abre su detalle. Utilicé este intercambio en el recorrido de compra.
 
 ## 9. Formularios
 
 
 
-AuthPage implementa registro y login con ReactiveFormsModule. EventFormPage reutiliza el formulario para POST y PUT. DetailPage valida la cantidad antes de comprar. El detalle incorpora botones + / − vinculados al control de cantidad, y el acceso permite mostrar u ocultar la contraseña. Los controles se marcan al intentar enviar; si son inválidos no se llama a la API. La búsqueda por fecha usa FormsModule.
+Construí el registro y login con ReactiveFormsModule en AuthPage. Reutilicé EventFormPage para registrar y editar eventos, y validé la cantidad en DetailPage antes de comprar. Vinculé los botones + / − al control de cantidad y añadí la opción de mostrar u ocultar la contraseña. Añadí el campo opcional de afiche, validado y persistido como imagenUrl en la API y MySQL. Impedí el envío de datos inválidos y utilicé FormsModule para los filtros.
 
-Al editar, los controles permanecen bloqueados mientras llegan los datos para evitar sobrescribir lo que el usuario acaba de escribir. El guardado y la compra bloquean envíos repetidos durante la solicitud.
+Bloqueé los controles de edición durante la carga inicial para evitar que una respuesta tardía sobrescriba los datos escritos. También bloqueé los envíos repetidos durante el guardado y la compra.
 
 ## 10. Validación de datos y manejo de errores
 
 
 
 | Dato / situación | Validación o respuesta |
-
 | --- | --- |
-
 | Nombre / lugar | Obligatorios, sin solo espacios; máximos de 120 / 160 caracteres. |
-
 | Correo / contraseña | Formato de correo, máximo 120; registro con contraseña entre 8 y 72 caracteres. |
-
 | Fecha / capacidad | Fecha actual o futura; capacidad entera positiva hasta el límite Integer del backend. |
-
 | Cantidad de compra | Entero positivo y máximo de capacidad total; la API valida el cupo disponible real. |
-
+| Afiche | URL opcional http/https o ruta local válida; máximo 1000 caracteres. |
 | HTTP 400 / 409 | Mensajes de validación, aforo insuficiente o integridad referencial. |
-
 | HTTP 401 / 403 / 404 | Credenciales o sesión, permisos insuficientes y registro inexistente. |
-
 | Error de red / servidor | Mensaje comprensible; no se muestran trazas ni detalles internos. |
 
 Figura 1. Formulario de evento con validación visual antes de llamar al backend.
@@ -171,50 +134,40 @@ Imagen: 06_Evidencias/02_login_error.png
 
 
 | Servicio / método | HTTP y endpoint | Uso |
-
 | --- | --- | --- |
-
 | AuthService.registrar | POST /api/auth/registro | Nueva cuenta CLIENTE |
-
 | AuthService.login | POST /api/auth/login | Obtiene JWT |
-
 | AuthService.restaurar | GET /api/auth/me | Perfil y rol actual |
-
 | ApiService.eventos | GET /api/eventos o /buscar?fecha= | Catálogo / filtro |
-
 | ApiService.evento | GET /api/eventos/{id} | Detalle / edición |
-
 | ApiService.guardar | POST /api/eventos; PUT /{id} | Alta / actualización |
-
 | ApiService.eliminar | DELETE /api/eventos/{id} | Borrado confirmado |
-
 | ApiService.comprar | POST /api/entradas | Registra compra propia |
-
 | ApiService.entradas | GET /api/entradas/mis o /api/entradas | Propias / general ADMIN |
 
-Los componentes no duplican llamadas HTTP: invocan métodos de los servicios y muestran estados de carga, resultado y error. Los nuevos endpoints /me y /mis permiten obtener la identidad y compras propias sin pedir IDs al cliente.
+Centralicé las llamadas HTTP en los servicios para evitar duplicarlas en las páginas. Desde los componentes presento los estados de carga, resultado y error. Incorporé /api/auth/me y /api/entradas/mis para consultar la identidad y las compras propias. El afiche forma parte del evento y se conserva en MySQL mediante el atributo imagenUrl. Angular obtiene el catálogo desde mi API Spring Boot.
 
 ## 12. Autenticación y autorización en Angular
 
 
 
-Login → JWT en sessionStorage → interceptor Bearer → API protegida. Al recargar la aplicación se valida el vencimiento y se consulta /api/auth/me. Un 401 protegido elimina la sesión. Al salir se borra el token. No se guardan contraseñas; los tokens completos no se incluyen en las evidencias.
+Implementé el flujo Login → JWT en sessionStorage → interceptor Bearer → API protegida. Al recargar, compruebo el vencimiento y consulto /api/auth/me; ante un 401 protegido, elimino la sesión. Al cerrar sesión, borro el token. No almaceno contraseñas en el navegador ni incluyo tokens completos en las evidencias.
 
-El menú y los guards reflejan ADMIN/CLIENTE. Spring Security sigue siendo la autoridad: comprueba firma y vencimiento del JWT, recupera el rol actual de MySQL y restringe las escrituras y el listado general. El registro público siempre crea CLIENTE; el responsable habilita ADMIN mediante SQL local.
+Adapté el menú y las rutas a los roles ADMIN y CLIENTE. Conservé en Spring Security la comprobación de firma, vencimiento y rol actual en MySQL. Restringí las escrituras y el listado general; el registro público asigna CLIENTE y la habilitación de ADMIN se realiza mediante el script SQL.
 
-sessionStorage limita la persistencia a la pestaña, pero sigue siendo accesible a JavaScript. Para un producto en producción serían necesarias decisiones adicionales sobre cookies, renovación y endurecimiento. Esas funciones no se presentan como implementadas.
+Elegí sessionStorage para limitar la persistencia a la pestaña. Reconozco que el token sigue siendo accesible a JavaScript. Para una futura versión de producción tendría que evaluar cookies, renovación de sesión y otras medidas; no incluyo esas funciones en el alcance actual.
 
 ## 13. Demostración funcional integrada · administración
 
 
 
-1. El ADMIN inicia sesión. 2. Accede a Administrar. 3. Crea eventos futuros desde el formulario Angular. 4. La API valida y JPA guarda en MySQL. 5. La cartelera refleja el alta. 6. Edita el lugar y verifica el cambio. 7. Crea y borra un evento temporal sin ventas; un evento con entradas queda protegido por integridad referencial.
+Para demostrar el CRUD, ingreso como ADMIN y accedo a Administrar. Registro un evento futuro desde Angular, compruebo su aparición en la cartelera y edito el lugar. Luego elimino un evento temporal sin ventas. Finalmente, compruebo que un evento con entradas quede protegido por la restricción de integridad referencial.
 
 Figura 3. Administración con datos obtenidos de la API, edición y borrado disponibles para ADMIN.
 
 Imagen: 06_Evidencias/04_admin_crud.png
 
-Figura 4. Cartelera Angular con eventos registrados a través del formulario integrado.
+Figura 4. Catálogo Angular con eventos persistidos en MySQL.
 
 Imagen: 06_Evidencias/05_catalogo.png
 
@@ -222,7 +175,7 @@ Imagen: 06_Evidencias/05_catalogo.png
 
 
 
-1. Se registra un CLIENTE. 2. Inicia sesión y selecciona un evento. 3. Elige dos entradas. 4. Angular envía POST /api/entradas con Bearer. 5. Spring Boot comprueba identidad, disponibilidad y fecha, bloquea el evento y confirma la transacción. 6. Angular muestra el identificador de compra y actualiza Mis entradas.
+Para demostrar la compra, registro una cuenta CLIENTE, inicio sesión y selecciono un evento del catálogo Festholic. Elijo dos entradas y confirmo la operación. Angular envía el POST con JWT; Spring Boot comprueba identidad, fecha y disponibilidad, bloquea el evento y guarda la compra. Consulto el resultado en Mis entradas.
 
 Figura 5. Confirmación de una compra real desde Angular contra Spring Boot y MySQL.
 
@@ -237,34 +190,27 @@ Imagen: 06_Evidencias/08_mis_entradas.png
 
 
 | Comprobación | Resultado y archivo |
-
 | --- | --- |
-
 | Suite backend | 42 pruebas; 0 fallos, 0 errores. backend_pruebas.txt. |
-
 | Integración API + MySQL 8.4 | 25 comprobaciones aprobadas. integracion_mysql.txt. |
-
 | Concurrencia de compra | Con 5 cupos, dos solicitudes de 4: una 201 y una 400. Tras comprar el último cupo, total = 5. |
-
 | Recorrido en Chromium | Registro, login, validación, CRUD, compra, guards, recarga de sesión y vista móvil. navegador.txt. |
-
-| Adaptación de Live Fest Perú | 21 comprobaciones de navegador: compra, login, selector de cantidad y móvil. negocio_navegador.txt. |
-
+| Interfaz actual | 32 comprobaciones de CRUD, afiches, login, compra y móvil. interfaz_actual.txt. |
+| Imagen persistente | 10 comprobaciones HTTP de alta, edición, validación y archivo. imagenes_api.txt. |
 | Persistencia después de reinicio | Comparación de eventos y entradas antes/después; datos conservados. persistencia.txt. |
-
 | Compilación frontend | npm run build exitoso con plantillas y TypeScript estrictos. angular_build.txt. |
 
-Las capturas 01–14 están completas en 06_Evidencias. La matriz TRAZABILIDAD.md relaciona los requisitos con archivos y evidencias. Los registros de prueba no contienen tokens ni contraseñas. El script de integración utiliza credenciales ADMIN proporcionadas por variables de entorno.
+Organizo las capturas 01–14 en 06_Evidencias y relaciono los requisitos con sus archivos en TRAZABILIDAD.md. Conservo los resultados de ejecución sin tokens ni contraseñas. El script de integración recibe las credenciales ADMIN mediante variables de entorno.
 
 ## Conclusiones técnicas
 
 
 
-Angular permite ejecutar las operaciones principales sin Postman y mantiene responsabilidades separadas entre páginas, componentes y servicios. La validación visual previene solicitudes incompletas, mientras el backend conserva la validación y autorización definitivas. JWT vincula la compra con la identidad actual. MySQL conserva eventos y entradas tras reiniciar la API.
+Integré las operaciones principales en Angular para utilizar el sistema sin depender de Postman. Separé las páginas, los componentes y los servicios; añadí validación visual y mantuve la validación y autorización definitivas en el backend. Vinculé la compra con la identidad autenticada mediante JWT y conservé la persistencia de eventos y entradas en MySQL.
 
-El bloqueo compartido entre compras y edición, unido a READ_COMMITTED, corrigió la sobreventa reproducida por solicitudes simultáneas. Las pruebas de navegador detectaron y permitieron corregir la carrera de carga del formulario de edición. La entrega cumple el alcance local de las dos guías; pagos, recuperación de contraseña y despliegue quedan fuera de este avance.
+Incorporé un bloqueo compartido entre compras y edición con aislamiento READ_COMMITTED para evitar la sobreventa concurrente. Corregí también la carga inicial del formulario de edición. Respaldo estas decisiones con las pruebas y evidencias de la entrega. Mantengo fuera del alcance los pagos, la recuperación de contraseña y el despliegue final.
 
-Reproducción: seguir README.md, configurar MySQL y las variables DB_USER, DB_PASS y JWT_SECRET, iniciar Spring Boot y ejecutar npm ci / npm start. No se requiere compartir credenciales personales.
+Documenté la ejecución en README.md: configurar MySQL y las variables DB_USER, DB_PASS y JWT_SECRET, iniciar Spring Boot y ejecutar npm ci / npm start en Angular. Utilizo variables de entorno para mantener las credenciales fuera del código.
 
 ## Anexo · interfaz adaptable y restricciones por rol
 
@@ -278,20 +224,20 @@ Figura 8. Cartelera a 390 px de ancho, comprobada sin desbordamiento horizontal.
 
 Imagen: 06_Evidencias/09_movil.png
 
-Fuentes de requisitos: APF3_01_Estructura_del_entregable.pdf y APF3_02_Guia_explicada_con_ejemplos.pdf. Los ejemplos del centro deportivo se adaptaron a Festholic; no se incorporaron módulos ajenos al proyecto.
+Tomé como base APF3_01_Estructura_del_entregable.pdf y APF3_02_Guia_explicada_con_ejemplos.pdf. Apliqué sus requisitos al dominio de eventos y entradas de Festholic para mantener la continuidad con mi APF2.
 
-## Anexo · diseño inspirado en Live Fest Perú
+## Anexo · presentación de Festholic
 
 
 
-Se adaptaron elementos visuales de entradas.html, evento.html y login.html proporcionados por el autor: atmósfera de concierto, superficies oscuras translúcidas, catálogo en tarjetas, banner de evento, selección con formato de boleto y acceso centrado. La paleta sigue el morado #7C4DFF y rosado #F21E87 del informe.
+Desarrollé la presentación de Festholic centrada en los eventos y sus afiches. Utilicé negro, morado y rosado; la fuente Inter; títulos sin rótulos adicionales; formularios sencillos y un footer compacto. Conservé la plantilla institucional del APF2 para este informe.
 
-Figura 9. Acceso centrado, panel translúcido, pestañas y control para mostrar la contraseña.
+Figura 9. Acceso con tipografía Inter, campos legibles y opción de mostrar la contraseña.
 
 Imagen: 06_Evidencias/10_login_diseno.png
 
-Figura 10. Banner, ficha de evento y selector de cantidad + / − con resumen de entradas.
+Figura 10. Detalle de un evento del módulo Festholic y selector de cantidad + / −.
 
 Imagen: 06_Evidencias/11_detalle_diseno.png
 
-Los fondos se recrearon con SASS porque los videos e imágenes referenciados no estaban adjuntos. La adaptación conserva la API de Festholic y no incorpora pagos, Google ni recuperación de contraseña del sitio de referencia. Consulte DISENO_REFERENCIAS.md y negocio_navegador.txt.
+Mantuve la presentación en SASS y cargué la fuente localmente. Los afiches provienen de la API o del campo de imagen del evento. El catálogo y las compras académicas de Festholic utilizan el backend Spring Boot y mi base MySQL. Detallo estas decisiones en DISENO_REFERENCIAS.md.

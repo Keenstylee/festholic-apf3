@@ -7,10 +7,9 @@ import { mensajeError } from "../shared/http";
 @Component({
   imports: [DatePipe, RouterLink],
   template: `<section class="page">
-    <span class="eyebrow">ESPACIO DE ADMINISTRACIÓN</span>
     <div class="section-heading">
       <div>
-        <h1>Gestiona los encuentros<span class="accent">.</span></h1>
+        <h1>Gestiona los encuentros</h1>
         <p>Crea, edita y organiza la cartelera de Festholic.</p>
       </div>
       <a class="primary" routerLink="/admin/eventos/nuevo">+ Nuevo evento</a>

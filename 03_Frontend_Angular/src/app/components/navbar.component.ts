@@ -5,27 +5,25 @@ import { AuthService } from "../services/auth.service";
   selector: "app-navbar",
   imports: [RouterLink, RouterLinkActive],
   template: `<header class="site-header">
-    <a class="brand-lockup" routerLink="/eventos" aria-label="Festholic, inicio"
-      ><span class="brand-mark" aria-hidden="true">f.</span
-      ><span
-        ><b class="brand">festholic<span>✦</span></b
-        ><small>EVENTOS · EXPERIENCIAS · ENTRADAS</small></span
-      ></a
-    >
-    <nav aria-label="Navegación principal">
-      <a routerLink="/eventos" routerLinkActive="current">Explorar</a>
-      @if (auth.usuario()) {
-        <a routerLink="/entradas" routerLinkActive="current">Mis entradas</a>
-        @if (auth.usuario()?.rol === "ADMIN") {
-          <a routerLink="/admin/eventos" routerLinkActive="current"
-            >Administrar</a
-          >
+    <div class="header-inner">
+      <a class="brand" routerLink="/eventos" aria-label="Festholic, inicio"
+        >fest<span>holic</span></a
+      >
+      <nav aria-label="Navegación principal">
+        <a routerLink="/eventos" routerLinkActive="current">Eventos</a>
+        @if (auth.usuario()) {
+          <a routerLink="/entradas" routerLinkActive="current">Mis entradas</a>
+          @if (auth.usuario()?.rol === "ADMIN") {
+            <a routerLink="/admin/eventos" routerLinkActive="current"
+              >Administrar</a
+            >
+          }
+          <button class="text-button" (click)="salir()">Salir</button>
+        } @else {
+          <a routerLink="/login">Iniciar sesión</a>
         }
-        <button class="text-button" (click)="salir()">Salir</button>
-      } @else {
-        <a class="nav-login" routerLink="/login">Iniciar sesión →</a>
-      }
-    </nav>
+      </nav>
+    </div>
   </header>`,
 })
 export class NavbarComponent {

@@ -42,6 +42,13 @@ public class Evento {
     @Column(nullable = false)
     private Integer capacidad;
 
+    @Size(max = 1000, message = "La URL de imagen no puede superar 1000 caracteres")
+    @jakarta.validation.constraints.Pattern(
+            regexp = "^$|^(https?://[^\\s<>]+|/eventos/[a-zA-Z0-9._/-]+)$",
+            message = "Usa una URL http/https o una imagen local de /eventos/")
+    @Column(name = "imagen_url", length = 1000)
+    private String imagenUrl;
+
     @Column(nullable = false)
     private boolean activo = true;
 
@@ -67,6 +74,8 @@ public class Evento {
     public void setFecha(LocalDate fecha) { this.fecha = fecha; }
     public Integer getCapacidad() { return capacidad; }
     public void setCapacidad(Integer capacidad) { this.capacidad = capacidad; }
+    public String getImagenUrl() { return imagenUrl; }
+    public void setImagenUrl(String imagenUrl) { this.imagenUrl = imagenUrl; }
     public boolean isActivo() { return activo; }
     public void setActivo(boolean activo) { this.activo = activo; }
 }

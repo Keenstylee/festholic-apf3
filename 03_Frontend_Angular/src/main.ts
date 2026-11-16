@@ -14,7 +14,7 @@ import {
 } from "@angular/router";
 import { provideHttpClient, withInterceptors } from "@angular/common/http";
 import { registerLocaleData } from "@angular/common";
-import es from "@angular/common/locales/es";
+import es from "@angular/common/locales/es-PE";
 import { routes } from "./app/app.routes";
 import { NavbarComponent } from "./app/components/navbar.component";
 import { AuthService } from "./app/services/auth.service";
@@ -29,37 +29,18 @@ registerLocaleData(es);
       <div class="footer-shell">
         <div class="footer-main">
           <div class="footer-brand">
-            <a
-              class="brand"
-              routerLink="/eventos"
-              aria-label="Festholic, volver al inicio"
-              >festholic<span>✦</span></a
-            >
-            <p class="footer-kicker">EVENTOS · EXPERIENCIAS · ENTRADAS</p>
-            <p>
-              Encuentra a tu gente.<br />Haz del próximo encuentro un gran
-              recuerdo.
-            </p>
+            <a class="brand" routerLink="/eventos">fest<span>holic</span></a>
+            <p>Eventos y entradas.</p>
           </div>
           <nav class="footer-nav" aria-label="Navegación del pie de página">
-            <h2>Explora Festholic</h2>
-            <a routerLink="/eventos"
-              >Ver eventos <span aria-hidden="true">→</span></a
-            ><a routerLink="/entradas"
-              >Mis entradas <span aria-hidden="true">→</span></a
-            ><a routerLink="/login"
-              >Mi cuenta <span aria-hidden="true">→</span></a
-            >
+            <a routerLink="/eventos">Eventos</a
+            ><a routerLink="/entradas">Mis entradas</a
+            ><a routerLink="/login">Mi cuenta</a>
           </nav>
-          <div class="footer-invite">
-            <span class="eyebrow">NOS VEMOS EN VIVO</span>
-            <p>Tu siguiente historia<br />empieza en persona<span> ✦</span></p>
-            <a routerLink="/eventos">Ir a la cartelera →</a>
-          </div>
         </div>
         <div class="footer-bottom">
-          <span>© 2026 Festholic. Los mejores momentos se viven juntos.</span
-          ><small>Proyecto académico · APF3</small>
+          <span>© 2026 Festholic</span
+          ><span>Conciertos y festivales en Lima.</span>
         </div>
       </div>
     </footer>`,

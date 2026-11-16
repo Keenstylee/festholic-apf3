@@ -1,0 +1,8 @@
+GET /api/eventos: HTTP 200.
+Tres eventos de ejemplo guardados y consultados desde Spring Boot/MySQL.
+OK: JUNGLE - World Tour 2027 · 2027-03-24 · imagen original guardada.
+OK: SIMPLE PLAN EN LIMA · 2027-05-06 · imagen original guardada.
+OK: SLIPKNOT EN LIMA · 2027-09-14 · imagen original guardada.
+OK: Los tres afiches cargan con sus colores originales.
+OK: Sin filtros, mezcla ni capa de color.
+OK: El frontend no consulta la API externa de eventos.

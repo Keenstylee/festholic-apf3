@@ -16,6 +16,7 @@ export interface Evento {
   lugar: string;
   fecha: string;
   capacidad: number;
+  imagenUrl?: string | null;
   activo: boolean;
 }
 export interface Entrada {

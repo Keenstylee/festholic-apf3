@@ -5,23 +5,24 @@
 ❯ Building...
 ✔ Building...
 Initial chunk files | Names           |  Raw size | Estimated transfer size
-chunk-TYFIVTXD.js   | -               | 268.64 kB |                73.24 kB
-styles-SIYHEKJT.css | styles          |  22.71 kB |                 5.19 kB
-main-2VKWG54W.js    | main            |   6.17 kB |                 2.33 kB
+chunk-JUGR22QL.js   | -               | 270.51 kB |                73.80 kB
+styles-RL7X7UQX.css | styles          |  14.11 kB |                 3.23 kB
+main-RAGCAUBB.js    | main            |   5.72 kB |                 2.10 kB
 
-                    | Initial total   | 297.52 kB |                80.76 kB
+                    | Initial total   | 290.34 kB |                79.13 kB
 
 Lazy chunk files    | Names           |  Raw size | Estimated transfer size
-chunk-5LGO7RH2.js   | -               |  41.64 kB |                 8.53 kB
-chunk-AUS4W2ZR.js   | detail-page     |   7.00 kB |                 2.72 kB
-chunk-456YTKYO.js   | events-page     |   5.72 kB |                 2.25 kB
-chunk-C34FG4XH.js   | auth-page       |   4.93 kB |                 1.92 kB
-chunk-QVYX3T2S.js   | event-form-page |   4.00 kB |                 1.68 kB
-chunk-KJFQBW4U.js   | admin-page      |   3.72 kB |                 1.51 kB
-chunk-GCRZUCQV.js   | tickets-page    |   3.18 kB |                 1.40 kB
-chunk-C2NSHGMJ.js   | -               | 688 bytes |               688 bytes
+chunk-JTEZDNQR.js   | -               |  41.64 kB |                 8.53 kB
+chunk-YBH6ODOY.js   | detail-page     |   5.64 kB |                 2.22 kB
+chunk-LPI2O45A.js   | events-page     |   5.56 kB |                 2.03 kB
+chunk-4SIKU6QW.js   | event-form-page |   4.56 kB |                 1.85 kB
+chunk-PCPPEZU6.js   | auth-page       |   4.54 kB |                 1.76 kB
+chunk-TX7CUU37.js   | admin-page      |   3.60 kB |                 1.47 kB
+chunk-2Q72B62Z.js   | tickets-page    |   2.76 kB |                 1.22 kB
+chunk-ST7KHMCX.js   | -               |   1.23 kB |               646 bytes
+chunk-LSNR3Q46.js   | -               | 688 bytes |               688 bytes
 
-Application bundle generation complete. [6.683 seconds] - 2026-11-15T08:30:41.945Z
+Application bundle generation complete. [5.440 seconds] - 2026-11-16T06:06:11.830Z
 
 Output location: /workspace/work/APF3_Festholic/03_Frontend_Angular/dist/festholic
 

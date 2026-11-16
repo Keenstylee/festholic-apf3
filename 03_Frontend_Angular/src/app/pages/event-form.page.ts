@@ -11,8 +11,7 @@ import { mensajeError } from "../shared/http";
 @Component({
   imports: [ReactiveFormsModule, RouterLink],
   template: `<section class="page narrow">
-    <a routerLink="/admin/eventos">← Volver a administración</a
-    ><span class="eyebrow">CONSTRUYE EL PRÓXIMO ENCUENTRO</span>
+    <a routerLink="/admin/eventos">← Volver a administración</a>
     <h1>{{ id ? "Editar evento" : "Nuevo evento" }}</h1>
     @if (error()) {
       <p class="alert error" role="alert">{{ error() }}</p>
@@ -38,6 +37,22 @@ import { mensajeError } from "../shared/http";
             >El lugar es obligatorio (máximo 160 caracteres).</small
           >
         }
+        <label
+          >Afiche del evento<input
+            formControlName="imagenUrl"
+            maxlength="1000"
+            placeholder="https://... o /eventos/afiche.jpg"
+        /></label>
+        @if (invalido("imagenUrl")) {
+          <small class="field-error"
+            >Usa una URL http/https o una imagen local de /eventos/ (máximo 1000
+            caracteres).</small
+          >
+        }
+        <p class="field-hint">
+          Puedes usar el enlace del afiche original. Si queda vacío, se mostrará
+          el nombre del evento.
+        </p>
         <div class="form-row">
           <div>
             <label
@@ -124,19 +139,29 @@ export class EventFormPage {
         Validators.pattern(/^\d+$/),
       ],
     ],
+    imagenUrl: [
+      "",
+      [
+        Validators.maxLength(1000),
+        Validators.pattern(
+          /^(https?:\/\/[^\s<>]+|\/eventos\/[a-zA-Z0-9._/-]+)?$/,
+        ),
+      ],
+    ],
     activo: [true],
   });
   constructor() {
     if (this.id) void this.cargar();
   }
-  invalido(k: "nombre" | "lugar" | "fecha" | "capacidad") {
+  invalido(k: "nombre" | "lugar" | "fecha" | "capacidad" | "imagenUrl") {
     const c = this.form.controls[k];
     return c.touched && c.invalid;
   }
   async cargar() {
     this.loading.set(true);
     try {
-      this.form.patchValue(await this.api.evento(this.id!));
+      const evento = await this.api.evento(this.id!);
+      this.form.patchValue({ ...evento, imagenUrl: evento.imagenUrl ?? "" });
     } catch (e) {
       this.error.set(mensajeError(e));
       this.form.disable();

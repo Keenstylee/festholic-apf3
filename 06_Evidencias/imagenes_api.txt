@@ -1,0 +1,11 @@
+OK: Crear evento con URL de imagen válida
+OK: Imagen persistida y devuelta por GET
+OK: Editar imagen local
+OK: Imagen actualizada persiste
+OK: Rechazo de esquema de imagen no válido
+OK: Rechazo de espacios en URL
+OK: Rechazo de URL superior a 1000 caracteres
+OK: Tres eventos de referencia finalizados y sin venta
+OK: No comprar un evento finalizado
+OK: Borrar evento de prueba sin compras
+TOTAL: 10 comprobaciones de imágenes y archivo aprobadas.

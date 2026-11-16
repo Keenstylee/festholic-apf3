@@ -1,4 +1,4 @@
-import { Component, inject, signal } from "@angular/core";
+import { Component, computed, inject, signal } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { ApiService } from "../services/api.service";
@@ -7,40 +7,45 @@ import { EventCardComponent } from "../components/event-card.component";
 import { mensajeError } from "../shared/http";
 @Component({
   imports: [FormsModule, EventCardComponent],
-  template: `<section class="hero concert-hero">
-      <div class="hero-copy">
-        <span class="pill-label"><i></i>LA MÚSICA NOS ENCUENTRA</span>
-        <h1>Tu próxima<br />gran noche<br /><em>empieza aquí.</em></h1>
-        <p>
-          Los eventos que quieres vivir.<br />Tu gente. Tu música. Tu lugar.
-        </p>
-        <a class="primary" href="#cartelera">Explorar eventos <span>↓</span></a>
-        <div class="hero-footnote">
-          <span>01 / DESCUBRE</span><span>02 / ELIGE</span
-          ><span>03 / VÍVELO</span>
-        </div>
-      </div>
-      <div class="stage-visual" aria-hidden="true">
-        <div class="stage-beams"></div>
-        <div class="stage-horizon"></div>
-        <div class="stage-word">LIVE<br /><span>THE</span><br />FEELING.</div>
-        <div class="stage-footer">
-          <span>FESTHOLIC EXPERIENCE</span><b>✦</b>
-        </div>
-      </div>
+  template: ` <section class="catalog-heading">
+      <h1>Eventos y conciertos.</h1>
+      <p>Consulta la cartelera y encuentra tu próximo evento.</p>
     </section>
-    <div class="ticker">
-      <span>✦</span> ENCUENTRA TU RITMO <span>✦</span> VIVE EL MOMENTO
-      <span>✦</span> CREA RECUERDOS <span>✦</span>
-    </div>
     <section id="cartelera">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow">SELECCIÓN FESTHOLIC</span>
-          <h2>Eventos disponibles<span class="accent">.</span></h2>
-          <p>Encuentra ese próximo «yo estuve ahí».</p>
+      <h2 class="sr-only">Cartelera de eventos</h2>
+      <div class="catalog-toolbar">
+        <div
+          class="catalog-tabs"
+          role="group"
+          aria-label="Filtrar eventos por estado"
+        >
+          <button
+            [class.active]="vista() === 'todos'"
+            (click)="vista.set('todos'); limite.set(18)"
+          >
+            Todos</button
+          ><button
+            [class.active]="vista() === 'proximos'"
+            (click)="vista.set('proximos'); limite.set(18)"
+          >
+            Próximos</button
+          ><button
+            [class.active]="vista() === 'finalizados'"
+            (click)="vista.set('finalizados'); limite.set(18)"
+          >
+            Finalizados
+          </button>
         </div>
-        <form class="filter" (ngSubmit)="cargar()">
+        <div class="catalog-search">
+          <label for="event-search" class="sr-only">Buscar evento</label
+          ><input
+            id="event-search"
+            type="search"
+            placeholder="Buscar evento o lugar"
+            (input)="busqueda.set($any($event.target).value); limite.set(18)"
+          />
+        </div>
+        <form class="filter" (ngSubmit)="aplicarFecha()">
           <label
             >Filtrar por fecha<input
               type="date"
@@ -50,7 +55,7 @@ import { mensajeError } from "../shared/http";
           ><button
             type="button"
             class="text-button"
-            (click)="fecha = ''; cargar()"
+            (click)="fecha = ''; aplicarFecha()"
           >
             Ver todos
           </button>
@@ -63,29 +68,26 @@ import { mensajeError } from "../shared/http";
         </div>
       }
       @if (loading()) {
-        <p role="status">Buscando tu próximo encuentro…</p>
+        <p role="status">Cargando eventos…</p>
       } @else if (!error()) {
         <div class="event-grid">
-          @for (e of eventos(); track e.id) {
+          @for (e of visibles().slice(0, limite()); track e.id) {
             <app-event-card [evento]="e" (seleccionar)="abrir($event)" />
           } @empty {
             <div class="empty">
-              <h3>Aún no hay eventos para mostrar.</h3>
-              <p>Vuelve pronto o prueba otra fecha.</p>
+              <h3>No hay eventos para este filtro.</h3>
+              <p>Prueba otra fecha o busca otro nombre.</p>
             </div>
           }
         </div>
+        @if (visibles().length > limite()) {
+          <div class="load-more">
+            <button class="secondary" (click)="limite.update(mas)">
+              Cargar más eventos
+            </button>
+          </div>
+        }
       }
-      <div class="experience-strip">
-        <span class="experience-icon">✦</span>
-        <div>
-          <h3>Un encuentro empieza con una entrada.</h3>
-          <p>
-            Descubre la cartelera, guarda tu lugar y consulta tus compras desde
-            tu cuenta.
-          </p>
-        </div>
-      </div>
     </section>`,
 })
 export class EventsPage {
@@ -94,15 +96,44 @@ export class EventsPage {
   eventos = signal<Evento[]>([]);
   loading = signal(false);
   error = signal("");
+  vista = signal<"todos" | "proximos" | "finalizados">("proximos");
+  busqueda = signal("");
+  limite = signal(18);
   fecha = "";
+  fechaAplicada = signal("");
+  hoy = new Date().toLocaleDateString("en-CA");
+  visibles = computed(() => {
+    const q = this.busqueda().trim().toLocaleLowerCase();
+    return this.eventos()
+      .filter(
+        (e) =>
+          (this.vista() === "todos" ||
+            (this.vista() === "finalizados"
+              ? e.fecha < this.hoy
+              : e.fecha >= this.hoy)) &&
+          (!this.fechaAplicada() || e.fecha === this.fechaAplicada()) &&
+          (!q || (e.nombre + " " + e.lugar).toLocaleLowerCase().includes(q)),
+      )
+      .sort(
+        (a, b) =>
+          Number(!a.imagenUrl) - Number(!b.imagenUrl) ||
+          a.fecha.localeCompare(b.fecha),
+      );
+  });
+  mas = (n: number) => n + 18;
   constructor() {
     void this.cargar();
   }
+  aplicarFecha() {
+    this.fechaAplicada.set(this.fecha);
+    this.limite.set(18);
+  }
   async cargar() {
+    if (this.loading()) return;
     this.loading.set(true);
     this.error.set("");
     try {
-      this.eventos.set(await this.api.eventos(this.fecha));
+      this.eventos.set(await this.api.eventos());
     } catch (e) {
       this.error.set(mensajeError(e));
       this.eventos.set([]);
